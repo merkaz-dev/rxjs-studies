@@ -1,18 +1,41 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MergeComponent } from './flat-join-operators/merge/merge.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlatJoinOperatorsComponent } from './flat-join-operators/flat-join-operators.component';
+import { ConcatComponent } from './flat-join-operators/concat/concat.component';
+import { SwitchAllComponent } from './flat-join-operators/switch-all/switch-all.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppMaterialModule } from './material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NestedJoinOperatorsComponent } from './nested-join-operators/nested-join-operators.component';
+import { MergeMapComponent } from './nested-join-operators/merge-map/merge-map.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MergeComponent,
+    NavBarComponent,
+    ConcatComponent,
+    MergeMapComponent,
+    SwitchAllComponent,
+    FlatJoinOperatorsComponent,
+    NestedJoinOperatorsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    FlexLayoutModule,
+    AppMaterialModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

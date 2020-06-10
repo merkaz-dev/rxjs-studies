@@ -1,0 +1,67 @@
+<mat-card class="rxjs-card">
+  <mat-card-header>
+    <mat-card-title>
+      Preserve Order of Events by Concatenating Streams
+    </mat-card-title>
+    <mat-card-subtitle>CONCAT</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div>
+        <p>
+          Concat-operator preservs the order of the entire observable sequences
+          when you join them instead of interleaving them. This is useful in
+          cases when you’d like to give priority to one type of event versus
+          another.
+        </p>
+        <p>
+          It’s important to note that a <i>merge()</i> differs from
+          <i>concat()</i> on one key behavior: whereas the
+          <i>merge()</i> operator will allow you to immediately subscribe to all
+          of the source observables, <i>concat()</i> will subscribe to only one
+          observable at a time.
+        </p>
+
+        <p>
+          Although it continues to manage the subscriptions to each of the
+          underlying streams, it will hold only a single subscription at a time
+          and process that before the next one in order.
+        </p>
+
+        <p>
+          <i>concat()</i> of an infinite stream with any other stream will only
+          ever emit an event from the first stream. <i>concat()</i> begins
+          emitting data from a second observable once the first one completes.
+        </p>
+        <p>
+          <i>concat()</i> can be both <b>instance</b> and
+          <b>static</b> operators
+        </p>
+        <p style="background-color: pink; padding: 8px;">
+          Nesting subscriptions breaks the downstream flow of data from one
+          observable to the next, which is an antipattern in the RxJS model.
+          Also, not only would you be duplicating your efforts by having to
+          write the same observer code in two difference places, but you’d
+          hamper RxJS’s optimizations in the pipeline chain by impeding its
+          ability to reuse internal data structures and lazy evaluation.
+        </p>
+      </div>
+    </div>
+    <div *ngIf="elements.length > 0">
+      <mat-list role="list">
+        <mat-list-item
+          *ngFor="let el of elements"
+          style="color: whitesmoke;"
+          [style.background-color]="el.bgColor"
+          >&spades; {{ el.value }}</mat-list-item
+        >
+      </mat-list>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="runConcat()" color="accent">Run Cocat</button>
+    <button mat-button (click)="clearArray()" color="accent">
+      Clear Concat
+    </button>
+  </mat-card-actions>
+</mat-card>

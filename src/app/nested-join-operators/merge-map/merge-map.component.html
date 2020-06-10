@@ -1,0 +1,113 @@
+<mat-card class="rxjs-card">
+  <mat-card-header>
+    <mat-card-title>
+      Mapping One Stream into Another
+    </mat-card-title>
+    <mat-card-subtitle>MERGE app-merge-map</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <p>
+        <i><strong>mergeMap()</strong></i> maps an observable-returning function
+        and flattens it (or merges it) into the source observable. The inner
+        observable would return the result of the function for the whole
+        observable.
+      </p>
+
+      <p>
+        Оператор RxJS <i><strong>mergeMap()</strong></i> применяет к каждому
+        значению исходного Observable функцию, которая возвращает новый объект
+        Observable для исполнения.Аналогом оператора <i>mergeMap()</i> является
+        <i>flatMap()</i>.
+      </p>
+
+      <p>
+        Передаваемая функция принимает значение исходного Observable в качестве
+        входного параметра. В отличие от concatMap() здесь каждый новый
+        Observable выполняется сразу, не дожидаясь, пока будут завершены
+        объекты, сформированные раньше его.
+      </p>
+    </div>
+  </mat-card-content>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          EXAMPLE I
+        </mat-panel-title>
+        <mat-panel-description>
+          MERGE MAP & HTTP Requests
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div *ngIf="elementsOld.length > 0">
+        <div fxLayout="row">
+          <mat-list role="list" fxFlex="100">
+            <mat-list-item
+              *ngFor="let el of elementsOld"
+              style="color: blueviolet;"
+              [style.background-color]="el.bgColor"
+              >&spades; {{ el.slr }} - {{ el.clicks }}</mat-list-item
+            >
+          </mat-list>
+          <mat-list role="list" fxFlex="100">
+            <mat-list-item
+              *ngFor="let el of elementsNew"
+              style="color: red;"
+              [style.background-color]="el.bgColor"
+              >&spades; {{ el.slr }} - {{ el.clicks }}</mat-list-item
+            >
+          </mat-list>
+        </div>
+      </div>
+
+      <mat-card-actions>
+        <button mat-button (click)="runMergeMap()" color="accent">
+          Run MergeMap
+        </button>
+        <button mat-button (click)="clearArray()" color="accent">
+          Clear Concat
+        </button>
+      </mat-card-actions>
+    </mat-expansion-panel>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          EXAMPLE II
+        </mat-panel-title>
+        <mat-panel-description>
+          MERGE MAP & Input Fields
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <div fxFlex="100">
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input [formControl]="input1" matInput type="text" #nameInput />
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="100">
+          <mat-form-field>
+            <mat-label>Family Name</mat-label>
+            <input [formControl]="input2" #surnameInput matInput type="text" />
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-toolbar>
+        <mat-toolbar-row>
+          Here goes the full name: <span #fullName></span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <mat-card-actions>
+        <button mat-button (click)="clearFields()" color="accent">
+          Clear
+        </button>
+      </mat-card-actions>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>

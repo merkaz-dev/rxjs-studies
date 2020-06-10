@@ -1,0 +1,57 @@
+<div style="padding: 10px;">
+  <p>
+    There are many different ways to join multiple streams into one. There exist
+    the following strategies:
+  </p>
+  <p>
+    <i>Interleave events by merging streams</i> - This strategy is useful for
+    forwarding events from multiple streams and is ideal for handling different
+    types of user interaction events like mouse or touch.
+  </p>
+  <p>
+    <i>Preserve order of events by concatenating streams</i> - This one is used
+    when the order of the events emitted by multiple streams needs to be
+    preserved.
+  </p>
+  <p>
+    <i>Switch to the latest stream data</i> - This is used when one type of
+    event kicks off another, such as a button click initiating a remote HTTP
+    call or beginning a timer.
+  </p>
+</div>
+<div fxLayout="column" fxLayoutAlign="start center">
+  <h2>Joining Streams with "Flat" Data into One</h2>
+  <p style="padding: 10px;">
+    Operators <i>merge()</i>,<i> concat()</i>, and <i>switchAll()</i>, grouped
+    observable data in a flat manner, each with a different strategy. In other
+    words, you’re receiving events from one source or another and processing
+    them accordingly. All these operators have
+    <i><strong>higher-order observable</strong></i> equivalents, which handle
+    nested observables.
+  </p>
+
+  <p style="padding: 10px;">
+    DEFINITION. The term
+    <i><strong>higher-order observable</strong></i> originates from the notion
+    of a <i>higher-order function</i>, which can receive other functions as
+    parameters. In this case, we mean observables that receive other observables
+    as arguments.
+  </p>
+</div>
+<div
+  style="padding: 10px;"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutGap="10px"
+>
+  <div fxFlex="100"><app-merge></app-merge></div>
+  <div fxFlex="100"><app-concat></app-concat></div>
+</div>
+<div
+  style="padding: 10px;"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutGap="10px"
+>
+  <div fxFlex="50"><app-switch-all></app-switch-all></div>
+</div>

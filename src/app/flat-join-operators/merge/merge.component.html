@@ -1,0 +1,56 @@
+<mat-card class="rxjs-card">
+  <mat-card-header>
+    <mat-card-title>
+      Interleave Events by Merging Streams
+    </mat-card-title>
+    <mat-card-subtitle>MERGE</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div>
+        <p>
+          With <i>MERGE</i>, events arrive in same time and order as they were
+          emitted by merged sources.
+        </p>
+        <p>MERGE static: <i>merge(obs1$, obs2$, ...)</i></p>
+        <p>
+          In the static form, merge a creational operator: you’re creating a new
+          stream from the combination of two or more observables.
+        </p>
+        <p>MERGE instance: <i>obs1$.pipe(merge(obs2$, obs3$, ...))</i></p>
+        <p>
+          Using it in instance form, we say that
+          <i
+            ><b
+              >an observable is projected or mapped to the source observable</b
+            ></i
+          >.
+        </p>
+        <p>
+          Both yield the same results, and because operators are pure, both
+          create new observables.
+        </p>
+        <p>
+          If <strong>order</strong> not <strong>throughput</strong> is a primary
+          concern, try <strong><i>concat</i></strong> instead!
+        </p>
+      </div>
+    </div>
+    <div *ngIf="elements.length > 0">
+      <mat-list role="list">
+        <mat-list-item
+          *ngFor="let el of elements"
+          style="color: whitesmoke;"
+          [style.background-color]="el.bgColor"
+          >&spades; {{ el.value }}</mat-list-item
+        >
+      </mat-list>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="runMerge()" color="accent">Run Merge</button>
+    <button mat-button (click)="clearArray()" color="accent">
+      Clear Merge
+    </button>
+  </mat-card-actions>
+</mat-card>

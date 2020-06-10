@@ -1,0 +1,50 @@
+<mat-card class="rxjs-card">
+  <mat-card-header>
+    <mat-card-title>
+      Switch to the Latest Observable Data
+    </mat-card-title>
+    <mat-card-subtitle>SWITH ALL</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div>
+        <p>
+          Both <i>merge()</i> and <i>concat()</i> propagate the input stream
+          data forward into the pipeline. <i>switchAll()</i> cancells the first
+          sequence when a new one begins emitting.
+        </p>
+
+        <p>
+          <i>switchAll()</i> takes another observable (concatanation of
+          <i>obs$2</i> and <i>obs$3</i>) that has been
+          <strong>mapped</strong> (or <strong>projected</strong>)to the source
+          observable (<i>obs$1</i>) and fuses it into the source observable.
+        </p>
+        <p>
+          The caveat is that each time the source observable emits,
+          <i>switchAll()</i> immediately unsubscribes from it and begins
+          emitting events from the latest observable that was mapped.
+        </p>
+        <p><i>switchAll()</i> can be only instance operator.</p>
+      </div>
+    </div>
+    <div *ngIf="elements.length > 0">
+      <mat-list role="list">
+        <mat-list-item
+          *ngFor="let el of elements"
+          style="color: whitesmoke;"
+          [style.background-color]="el.bgColor"
+          >&spades; {{ el.value }}</mat-list-item
+        >
+      </mat-list>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="runSwitchAll()" color="accent">
+      Run SwitchAll
+    </button>
+    <button mat-button (click)="clearArray()" color="accent">
+      Clear Concat
+    </button>
+  </mat-card-actions>
+</mat-card>
