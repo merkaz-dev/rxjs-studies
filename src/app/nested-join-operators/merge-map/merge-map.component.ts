@@ -7,7 +7,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { NestedJoinService } from 'src/app/services/nested-join.service';
-import { Subscription, fromEvent, Observable } from 'rxjs';
+import { Subscription, merge, fromEvent, Observable } from 'rxjs';
 import { mergeMap, map, tap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 
@@ -19,34 +19,58 @@ import { FormControl } from '@angular/forms';
 export class MergeMapComponent implements OnInit, OnDestroy {
   elementsOld: any[] = [];
   elementsNew: any[] = [];
-  subscription: Subscription;
-  input1: FormControl;
-  input2: FormControl;
-  @ViewChild('fullName') fullName: ElementRef;
-  @ViewChild('nameInput') nameInput: ElementRef;
-  @ViewChild('surnameInput') surnameInput: ElementRef;
+  subscription1: Subscription;
+  subscription2: Subscription;
+  input1_1: FormControl;
+  input1_2: FormControl;
+  @ViewChild('fullName1') fullName1: ElementRef;
+  @ViewChild('nameInput1') nameInput1: ElementRef;
+  @ViewChild('surnameInput1') surnameInput1: ElementRef;
+
+  input2_1: FormControl;
+  input2_2: FormControl;
+  @ViewChild('fullName2') fullName2: ElementRef;
+  @ViewChild('nameInput2') nameInput2: ElementRef;
+  @ViewChild('surnameInput2') surnameInput2: ElementRef;
 
   constructor(private nestedJoins: NestedJoinService) {}
   ngOnInit(): void {
-    this.input1 = new FormControl();
-    this.input2 = new FormControl();
-    this.subscription = this.input1.valueChanges
+    this.input1_1 = new FormControl();
+    this.input1_2 = new FormControl();
+    this.subscription1 = this.input1_1.valueChanges
       .pipe(
         mergeMap((v1) =>
-          this.input2.valueChanges.pipe(map((v2) => `${v1} ${v2}`))
+          this.input1_2.valueChanges.pipe(map((v2) => `${v1} ${v2}`))
         )
       )
-      .subscribe((res) => (this.fullName.nativeElement.textContent = res));
+      .subscribe((res) => (this.fullName1.nativeElement.textContent = res));
+
+    this.input2_1 = new FormControl();
+    this.input2_2 = new FormControl();
+    this.subscription2 = merge(
+      this.input2_1.valueChanges,
+      this.input2_2.valueChanges
+    )
+      .pipe(
+        map((v, i) => {
+          console.log(`v: ${v} i: ${i}`);
+          return `value: ${v}, index: ${i}`;
+        })
+      )
+      .subscribe((res) => (this.fullName2.nativeElement.textContent = res));
   }
 
   clearFields() {
-    this.fullName.nativeElement.textContent = '';
-    this.nameInput.nativeElement.value = '';
-    this.surnameInput.nativeElement.value = '';
+    this.fullName1.nativeElement.textContent = '';
+    this.nameInput1.nativeElement.value = '';
+    this.surnameInput1.nativeElement.value = '';
+    this.fullName2.nativeElement.textContent = '';
+    this.nameInput2.nativeElement.value = '';
+    this.surnameInput2.nativeElement.value = '';
   }
 
   runMergeMap() {
-    this.subscription = this.nestedJoins.runMergeMap1().subscribe((res) => {
+    this.subscription1 = this.nestedJoins.runMergeMap1().subscribe((res) => {
       console.log(res);
       if (this.elementsNew.length === 0) {
         this.elementsNew = [...res];
@@ -64,6 +88,7 @@ export class MergeMapComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription1.unsubscribe();
+    this.subscription2.unsubscribe();
   }
 }

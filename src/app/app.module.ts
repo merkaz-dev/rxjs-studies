@@ -14,6 +14,9 @@ import { NestedJoinOperatorsComponent } from './nested-join-operators/nested-joi
 import { MergeMapComponent } from './nested-join-operators/merge-map/merge-map.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConcatMapComponent } from './nested-join-operators/concat-map/concat-map.component';
+import { ComparisonsComponent } from './comparisons/comparisons.component';
+import { MergeConcSwitchComponent } from './comparisons/merge-conc-switch/merge-conc-switch.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     SwitchAllComponent,
     FlatJoinOperatorsComponent,
     NestedJoinOperatorsComponent,
+    ConcatMapComponent,
+    ComparisonsComponent,
+    MergeConcSwitchComponent,
   ],
   imports: [
     BrowserModule,

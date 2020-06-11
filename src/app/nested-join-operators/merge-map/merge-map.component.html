@@ -17,7 +17,7 @@
       <p>
         Оператор RxJS <i><strong>mergeMap()</strong></i> применяет к каждому
         значению исходного Observable функцию, которая возвращает новый объект
-        Observable для исполнения.Аналогом оператора <i>mergeMap()</i> является
+        Observable для исполнения. Аналогом оператора <i>mergeMap()</i> является
         <i>flatMap()</i>.
       </p>
 
@@ -55,7 +55,7 @@
               *ngFor="let el of elementsNew"
               style="color: red;"
               [style.background-color]="el.bgColor"
-              >&spades; {{ el.slr }} - {{ el.clicks }}</mat-list-item
+              >&clubs; {{ el.slr }} - {{ el.clicks }}</mat-list-item
             >
           </mat-list>
         </div>
@@ -82,25 +82,87 @@
           MERGE MAP & Input Fields
         </mat-panel-description>
       </mat-expansion-panel-header>
-
+      <p>
+        <i>source1$.mergeMap(() => source2$)</i> - Observers see only data from
+        source2$. This is type of sequential streams in which the output of one
+        stream generates a new one. The observer won’t receive any events from
+        the first stream; an observer will only see the results of the
+        observable projected by <i>mergeMap()</i>.
+      </p>
       <div fxLayout="row" fxLayoutAlign="space-evenly center">
         <div fxFlex="100">
           <mat-form-field>
             <mat-label>First Name</mat-label>
-            <input [formControl]="input1" matInput type="text" #nameInput />
+            <input [formControl]="input1_1" matInput type="text" #nameInput1 />
           </mat-form-field>
         </div>
 
         <div fxFlex="100">
           <mat-form-field>
             <mat-label>Family Name</mat-label>
-            <input [formControl]="input2" #surnameInput matInput type="text" />
+            <input
+              [formControl]="input1_2"
+              #surnameInput1
+              matInput
+              type="text"
+            />
           </mat-form-field>
         </div>
       </div>
       <mat-toolbar>
         <mat-toolbar-row>
-          Here goes the full name: <span #fullName></span>
+          Here goes the full name: <span #fullName1></span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <mat-card-actions>
+        <button mat-button (click)="clearFields()" color="accent">
+          Clear
+        </button>
+      </mat-card-actions>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          EXAMPLE III
+        </mat-panel-title>
+        <mat-panel-description>
+          STATIC MERGE & Input Fields
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>
+        <i>Rx.Observable.merge(source1$, source2$)</i> - Observers see data
+        emitted from either observable. You create a set of simultaneous
+        streams; this means that both streams are subscribed to at the same time
+        and the resulting observable can output from either observable— both are
+        active simultaneously.
+      </p>
+      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <div fxFlex="100">
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input [formControl]="input2_1" matInput type="text" #nameInput2 />
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="100">
+          <mat-form-field>
+            <mat-label>Family Name</mat-label>
+            <input
+              [formControl]="input2_2"
+              #surnameInput2
+              matInput
+              type="text"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-toolbar>
+        <mat-toolbar-row>
+          Here goes the full name: <span #fullName2></span>
         </mat-toolbar-row>
       </mat-toolbar>
       <mat-card-actions>

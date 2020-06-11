@@ -1,4 +1,24 @@
 <app-nav-bar></app-nav-bar>
 
-<app-flat-join-operators></app-flat-join-operators>
+<div fxLayout="row" fxLayoutAlign="space-around center">
+  <div>
+    <button mat-button (click)="goToFlat()" color="accent">
+      Flat Operators
+    </button>
+  </div>
+  <div>
+    <button mat-button (click)="goToNested()" color="accent">
+      Nested Operators
+    </button>
+  </div>
+  <div>
+    <button mat-button (click)="goToComparison()" color="accent">
+      Comparison Operators
+    </button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+<!-- <app-flat-join-operators></app-flat-join-operators>
 <app-nested-join-operators></app-nested-join-operators>
+<app-comparisons></app-comparisons> -->

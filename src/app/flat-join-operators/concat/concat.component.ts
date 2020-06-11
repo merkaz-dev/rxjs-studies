@@ -11,12 +11,12 @@ import { FlatJoinService } from 'src/app/services/flat-join.service';
 export class ConcatComponent implements OnInit {
   subscription: Subscription;
   elements: IListItem[] = [];
-  constructor(private FlatJoinService: FlatJoinService) {}
+  constructor(private flatJoinService: FlatJoinService) {}
 
   ngOnInit(): void {}
 
   runConcat() {
-    this.subscription = this.FlatJoinService.runConcat().subscribe((el) => {
+    this.flatJoinService.runConcat().subscribe((el) => {
       this.elements.push(el);
     });
   }
@@ -24,7 +24,5 @@ export class ConcatComponent implements OnInit {
   clearArray() {
     this.elements = [];
   }
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+  ngOnDestroy(): void {}
 }

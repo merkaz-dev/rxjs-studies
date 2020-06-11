@@ -15,7 +15,7 @@ export class SwitchAllComponent implements OnInit {
 
   ngOnInit(): void {}
   runSwitchAll() {
-    this.subscription = this.FlatJoinService.runSwitchAll().subscribe((el) => {
+    this.FlatJoinService.runSwitchAll().subscribe((el) => {
       this.elements.push(el);
     });
   }
@@ -24,6 +24,6 @@ export class SwitchAllComponent implements OnInit {
     this.elements = [];
   }
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 }

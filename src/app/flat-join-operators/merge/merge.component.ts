@@ -12,12 +12,12 @@ export class MergeComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   elements: IListItem[] = [];
 
-  constructor(private FlatJoinService: FlatJoinService) {}
+  constructor(private flatJoinService: FlatJoinService) {}
 
   ngOnInit(): void {}
 
   runMerge() {
-    this.subscription = this.FlatJoinService.runMerge().subscribe((el) => {
+    this.flatJoinService.runMerge().subscribe((el) => {
       this.elements.push(el);
     });
   }
@@ -26,6 +26,6 @@ export class MergeComponent implements OnInit, OnDestroy {
     this.elements = [];
   }
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 }
