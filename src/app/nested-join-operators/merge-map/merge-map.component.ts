@@ -17,6 +17,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./merge-map.component.css'],
 })
 export class MergeMapComponent implements OnInit, OnDestroy {
+  panelOpenState = false;
   elementsOld: any[] = [];
   elementsNew: any[] = [];
   subscription1: Subscription;

@@ -1,0 +1,239 @@
+<mat-card class="rxjs-card">
+  <mat-card-header>
+    <mat-card-title>
+      Get Lastest Values from Streams
+    </mat-card-title>
+    <mat-card-subtitle>COMBINE LATEST</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <p>
+        Оператор RxJS <i><strong>combineLatest()</strong></i> принимает объекты
+        Observable и возвращает новый объект, значениями которого являются
+        массивы, содержащие последние значения переданных объектов в момент
+        генерации значения одного из них. Исключение составляет первый массив,
+        который будет сформирован только когда все Observable сгенерируют свое
+        первое значение.
+      </p>
+
+      <p>
+        <i><strong>combineLatest()</strong></i> объекты Observable задаются в
+        виде rest-аргументов (через запятую). Причем самым последним параметром
+        можно передать агрегирующей функцию, принимающую входными параметрами
+        все значения массива и возвращающую рассчитанное новое значение. Порядок
+        значений переданных <i><strong>combineLatest()</strong></i
+        >s объектов Observable в массиве будут соответствовать тому порядку, в
+        котором они перечислялись для оператора.
+      </p>
+    </div>
+  </mat-card-content>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          EXAMPLE I
+        </mat-panel-title>
+        <mat-panel-description>
+          Combine Latest
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div *ngIf="elements.length > 0">
+        <div fxLayout="row">
+          <mat-list role="list" fxFlex="100">
+            <p>
+              With synchronous data sources, you have to be careful because RxJS
+              will immediately run through the events of the first source stream
+              and combine its latest value with the latest value of the combined
+              stream instead of pairing each element with others.
+            </p>
+            <mat-list-item
+              *ngFor="let el of elements"
+              [style.background-color]="el.bgColor"
+              style="color: whitesmoke;"
+            >
+              value: {{ el.value }}, delay time: {{ el.delayTime }}
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+
+      <mat-card-actions>
+        <button mat-button (click)="runCombineLatest()" color="accent">
+          Run
+        </button>
+        <button mat-button (click)="clearArray()" color="accent">
+          Clear Array
+        </button>
+      </mat-card-actions>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          EXAMPLE II
+        </mat-panel-title>
+        <mat-panel-description>
+          CombineLatest vs ForkJoin vs Zip
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex="100">
+          <h5>
+            Combine Latest
+          </h5>
+          <div *ngIf="arrays.combineLatest.length > 0">
+            <mat-list>
+              <div
+                *ngFor="let el of arrays.combineLatest; index as i"
+                style="background-color: greenyellow; color: white;"
+              >
+                <ul>
+                  <li [style.background-color]="el.bgColor1">
+                    <span>{{ el.name1 }} {{ el.value1 }} {{ el.time1 }}</span>
+                  </li>
+                  <li [style.background-color]="el.bgColor2">
+                    <span>{{ el.name2 }} {{ el.value2 }} {{ el.time2 }}</span>
+                  </li>
+                  <li [style.background-color]="el.bgColor3">
+                    <span>{{ el.name3 }} {{ el.value3 }} {{ el.time3 }}</span>
+                  </li>
+                </ul>
+              </div>
+            </mat-list>
+          </div>
+        </div>
+
+        <div fxFlex="100">
+          <h5>
+            ForkJoin
+          </h5>
+          <p>
+            <i><strong>forkJoin()</strong></i> spawns several requests, waits
+            for them to complete, and emits when all streams have completed. The
+            result is an array mapping to the output of each stream.
+          </p>
+          <p>
+            <i><b>forkJoin()</b></i> and
+            <i><strong>combineLatest()</strong></i> are similar, yet each
+            imparts its own flavor. Aside from the former being strictly a
+            static factory method and the latter used interchangeably as a
+            factory and instance operator, they differ in the criteria with
+            which they emit their values.
+            <i><strong>forkJoin()</strong></i> emits only the latest values from
+            each of the input observables. So if a sequence emits five values,
+            it will sit there and wait for the last one (certainly expect some
+            level of in-memory caching occurring here)
+          </p>
+          <p>
+            On the other hand, <strong><i>combineLatest()</i></strong> is closer
+            to a merge in the sense that it will emit values for the latest
+            values when any of its input observables emits
+          </p>
+          <div *ngIf="arrays.forkJoin.length > 0">
+            <mat-list>
+              <div
+                *ngFor="let el of arrays.forkJoin"
+                style="background-color: greenyellow; color: white;"
+              >
+                <ul>
+                  <li [style.background-color]="el.bgColor1">
+                    <span>{{ el.name1 }} {{ el.value1 }} {{ el.time1 }}</span>
+                  </li>
+                  <li [style.background-color]="el.bgColor2">
+                    <span>{{ el.name2 }} {{ el.value2 }} {{ el.time2 }}</span>
+                  </li>
+                  <li [style.background-color]="el.bgColor3">
+                    <span>{{ el.name3 }} {{ el.value3 }} {{ el.time3 }}</span>
+                  </li>
+                </ul>
+              </div>
+            </mat-list>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex="100">
+          <h5>
+            Zip
+          </h5>
+          <div *ngIf="arrays.zip.length > 0">
+            <mat-list>
+              <div
+                *ngFor="let el of arrays.zip; index as i"
+                style="background-color: greenyellow; color: white;"
+              >
+                <ul>
+                  <li [style.background-color]="el.bgColor1">
+                    <span>{{ el.name1 }} {{ el.value1 }} {{ el.time1 }}</span>
+                  </li>
+                  <li [style.background-color]="el.bgColor2">
+                    <span>{{ el.name2 }} {{ el.value2 }} {{ el.time2 }}</span>
+                  </li>
+                  <li [style.background-color]="el.bgColor3">
+                    <span>{{ el.name3 }} {{ el.value3 }} {{ el.time3 }}</span>
+                  </li>
+                </ul>
+              </div>
+            </mat-list>
+          </div>
+        </div>
+      </div>
+
+      <mat-card-actions>
+        <button mat-button (click)="runAll()" color="primary">
+          Run All
+        </button>
+        <button mat-button (click)="clearArray2()" color="accent">
+          Clear Arrays
+        </button>
+      </mat-card-actions>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          EXAMPLE III
+        </mat-panel-title>
+        <mat-panel-description>
+          Combine Latest
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <div fxFlex="100">
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input [formControl]="input1_1" matInput type="text" #nameInput1 />
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="100">
+          <mat-form-field>
+            <mat-label>Family Name</mat-label>
+            <input
+              [formControl]="input1_2"
+              #surnameInput1
+              matInput
+              type="text"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-toolbar>
+        <mat-toolbar-row>
+          Here goes the full name: <span #fullName1></span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <mat-card-actions>
+        <button mat-button (click)="clearFields()" color="accent">
+          Clear
+        </button>
+      </mat-card-actions>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>

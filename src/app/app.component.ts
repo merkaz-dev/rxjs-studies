@@ -19,4 +19,7 @@ export class AppComponent {
   goToComparison() {
     this.router.navigate(['comparison']);
   }
+  goToCombineLatest() {
+    this.router.navigate(['combinelatest']);
+  }
 }

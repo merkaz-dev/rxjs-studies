@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ConcatMapComponent } from './nested-join-operators/concat-map/concat-map.component';
 import { ComparisonsComponent } from './comparisons/comparisons.component';
 import { MergeConcSwitchComponent } from './comparisons/merge-conc-switch/merge-conc-switch.component';
+import { CombineLatestComponent } from './combine-latest/combine-latest.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MergeConcSwitchComponent } from './comparisons/merge-conc-switch/merge-
     ConcatMapComponent,
     ComparisonsComponent,
     MergeConcSwitchComponent,
+    CombineLatestComponent,
   ],
   imports: [
     BrowserModule,
