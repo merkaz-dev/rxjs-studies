@@ -196,7 +196,11 @@ export class CatchErrorComponent implements OnInit {
         })
       )
     ),
-    catchError((err) => throwError(err))
+    catchError((err: Error) => {
+      console.log('Error message', err.message);
+      console.log('Error name', err.name);
+      return throwError(err);
+    })
   );
   constructor() {}
 
