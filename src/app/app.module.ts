@@ -18,6 +18,8 @@ import { ConcatMapComponent } from './nested-join-operators/concat-map/concat-ma
 import { ComparisonsComponent } from './comparisons/comparisons.component';
 import { MergeConcSwitchComponent } from './comparisons/merge-conc-switch/merge-conc-switch.component';
 import { CombineLatestComponent } from './combine-latest/combine-latest.component';
+import { ErrorHandlingComponent } from './error-handling/error-handling.component';
+import { CatchErrorComponent } from './error-handling/catch-error/catch-error.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { CombineLatestComponent } from './combine-latest/combine-latest.componen
     ComparisonsComponent,
     MergeConcSwitchComponent,
     CombineLatestComponent,
+    ErrorHandlingComponent,
+    CatchErrorComponent,
   ],
   imports: [
     BrowserModule,

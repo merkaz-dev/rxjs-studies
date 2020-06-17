@@ -22,4 +22,7 @@ export class AppComponent {
   goToCombineLatest() {
     this.router.navigate(['combinelatest']);
   }
+  goToErrorhandling() {
+    this.router.navigate(['errorhandling']);
+  }
 }

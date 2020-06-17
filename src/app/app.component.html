@@ -22,7 +22,13 @@
     </button>
   </div>
 </div>
-
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button mat-button (click)="goToErrorhandling()" color="accent">
+      ErrorHandling
+    </button>
+  </div>
+</div>
 <router-outlet></router-outlet>
 <!-- <app-flat-join-operators></app-flat-join-operators>
 <app-nested-join-operators></app-nested-join-operators>

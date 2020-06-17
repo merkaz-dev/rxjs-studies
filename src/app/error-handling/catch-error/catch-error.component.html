@@ -1,0 +1,194 @@
+<style>
+  p {
+    padding: 10px;
+  }
+</style>
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="The Catch and Replace Strategy">
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+      <p>
+        CatchError return an Observable which is going to be a replacement
+        Observable for the stream that just errored out.
+      </p>
+      <p>
+        the replacement Observable was used to provide a default fallback value
+        to the subscribers, despite the fact that the original Observable did
+        error out.
+      </p>
+      <div>
+        <button mat-button color="accent" (click)="runStrategy1()">
+          CatchError replaces Observable with Error
+        </button>
+      </div>
+      <div>
+        {{ value1 }}
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="The Catch and Rethrow Strategy">
+    <p>
+      The replacement Observable provided via catchError can itself also error
+      out by using throwError-observable, just like any other Observable. And if
+      that happens, the error will be propagated to the subscribers of the
+      output Observable of catchError.
+    </p>
+
+    <button mat-button color="accent" (click)="runStrategy2()">
+      CatchError errors out to Observer
+    </button>
+    <div>Observer2: {{ value2 }}</div>
+    <p *ngIf="catchMessage" style="background-color: bisque;">
+      {{ catchMessage }}
+    </p>
+    <p *ngIf="error" style="background-color: brown; color: whitesmoke;">
+      {{ error }}
+    </p>
+  </mat-tab>
+  <mat-tab label="catchError multiple times in an Observable chain"
+    ><p>
+      We can use catchError multiple times at different points in the Observable
+      chain if needed, and adopt different error strategies at each point in the
+      chain.
+    </p>
+
+    <p>
+      We can, for example, catch an error up in the Observable chain, handle it
+      locally and rethrow it, and then further down in the Observable chain we
+      can catch the same error again and this time provide a fallback value
+      (instead of rethrowing)
+    </p>
+    <h5>Finalize Operator Example</h5>
+    <p>
+      Just like the <i>catchError</i> operator, we can add multiple
+      <i>finalize</i> calls at different places in the Observable chain if
+      needed, in order to make sure that the multiple resources are correctly
+      released
+    </p>
+    <button mat-button color="accent" (click)="runStrategy3()">
+      CatchError multiple times
+    </button>
+    <div>Observer3: {{ value3 }}</div>
+    <p *ngIf="catchMessage3" style="background-color: bisque;">
+      {{ catchMessage3 }}
+    </p>
+    <p *ngIf="finalizeMessage1" style="background-color: yellowgreen;">
+      {{ finalizeMessage1 }}
+    </p>
+    <p
+      *ngIf="infoMessage3"
+      style="background-color: steelblue; color: whitesmoke;"
+    >
+      {{ infoMessage3 }}
+    </p>
+    <p *ngIf="finalizeMessage2" style="background-color: yellowgreen;">
+      {{ finalizeMessage2 }}
+    </p>
+  </mat-tab>
+  <mat-tab label="The Immediate Retry Strategy">
+    <p>
+      As an alternative to rethrowing the error or providing fallback values, we
+      can also simply <i>retry</i> to subscribe to the errored out Observable.
+    </p>
+
+    <p>
+      Let's remember, once the stream errors out we cannot recover it, but
+      nothing prevents us from subscribing again to the Observable from which
+      the stream was derived from, and create another stream.
+    </p>
+    The big question here is, when are we going to subscribe again to the input
+    Observable, and retry to execute the input stream?
+    <ul>
+      <li>are we going to retry that immediately?</li>
+      <li>
+        are we going to wait for a small delay, hoping that the problem is
+        solved and then try again?
+      </li>
+      <li>
+        are we going to retry only a limited amount of times, and then error out
+        the output stream?
+      </li>
+    </ul>
+
+    In order to answer these questions, we are going to need a second auxiliary
+    Observable, which we are going to call the <i>Notifier Observable</i>. It's
+    the <i>Notifier Observable</i> that is going to determine when the retry
+    attempt occurs.
+
+    <p>
+      <i>Notifier Observable</i> is going to be used by the
+      <i><strong>retryWhen() Operator</strong></i
+      >, which is the heart of the Retry Strategy.
+    </p>
+    <button mat-button color="accent" (click)="runImmediateRetryStrategy()">
+      Run Immediate Retry Strategy
+    </button>
+    <p>{{ value4 }}</p>
+    <p
+      *ngIf="infoMessage4"
+      style="background-color: chartreuse; color: whitesmoke;"
+    >
+      {{ infoMessage4 }}
+    </p>
+  </mat-tab>
+
+  <mat-tab label="The Delayed Retry Strategy">
+    <p>
+      To implement the Delayed Retry Strategy, we will need to create a
+      <i>Notification Observable</i> whose values are emitted two seconds after
+      each error occurrence.
+    </p>
+    <p>
+      Let's then try to create a Notification Observable by using the timer
+      creation function. This timer function is going to take a couple of
+      arguments:
+    </p>
+    <ul>
+      <li>an initial delay, before which no values will be emitted</li>
+      <li>
+        a periodic interval, in case we want to emit new values periodically
+      </li>
+    </ul>
+
+    <button mat-button color="accent" (click)="runDelayedRetryStrategy()">
+      Run Delayed Retry Strategy
+    </button>
+    <p>{{ value5 }}</p>
+    <p
+      *ngIf="infoMessage5"
+      style="background-color: chartreuse; color: whitesmoke;"
+    >
+      {{ infoMessage5 }}
+    </p>
+  </mat-tab>
+  <mat-tab label="The Fixed Number of Retries Strategy">
+    <button mat-button color="accent" (click)="runFixedNumberOfRetries()">
+      Run Delayed Retry Strategy
+    </button>
+    <p>{{ value6 }}</p>
+    <p
+      *ngIf="infoMessage6"
+      style="background-color: chartreuse; color: whitesmoke;"
+    >
+      {{ infoMessage6 }}
+    </p>
+    <p *ngIf="error6" style="background-color: red; color: whitesmoke;">
+      {{ error6 }}
+    </p>
+  </mat-tab>
+
+  <mat-tab label="Liniear Backoff Retries Strategy">
+    <button mat-button color="accent" (click)="runLinearBackoffRetries()">
+      Run Linear Backoff Retries
+    </button>
+    <p>{{ value7 }}</p>
+    <p
+      *ngIf="infoMessage7"
+      style="background-color: chartreuse; color: whitesmoke;"
+    >
+      {{ infoMessage7 }}
+    </p>
+    <p *ngIf="error7" style="background-color: red; color: whitesmoke;">
+      {{ error7 }}
+    </p>
+  </mat-tab>
+</mat-tab-group>
