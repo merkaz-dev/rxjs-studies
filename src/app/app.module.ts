@@ -20,6 +20,8 @@ import { MergeConcSwitchComponent } from './comparisons/merge-conc-switch/merge-
 import { CombineLatestComponent } from './combine-latest/combine-latest.component';
 import { ErrorHandlingComponent } from './error-handling/error-handling.component';
 import { CatchErrorComponent } from './error-handling/catch-error/catch-error.component';
+import { MulticastingComponent } from './multicasting/multicasting.component';
+import { PublishComponent } from './multicasting/publish/publish.component';
 
 @NgModule({
   declarations: [
@@ -29,14 +31,16 @@ import { CatchErrorComponent } from './error-handling/catch-error/catch-error.co
     ConcatComponent,
     MergeMapComponent,
     SwitchAllComponent,
-    FlatJoinOperatorsComponent,
-    NestedJoinOperatorsComponent,
     ConcatMapComponent,
+    CatchErrorComponent,
     ComparisonsComponent,
-    MergeConcSwitchComponent,
+    MulticastingComponent,
     CombineLatestComponent,
     ErrorHandlingComponent,
-    CatchErrorComponent,
+    MergeConcSwitchComponent,
+    FlatJoinOperatorsComponent,
+    NestedJoinOperatorsComponent,
+    PublishComponent,
   ],
   imports: [
     BrowserModule,

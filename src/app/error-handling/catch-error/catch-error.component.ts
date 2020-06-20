@@ -183,14 +183,13 @@ export class CatchErrorComponent implements OnInit {
       range(0, this.maxRetries + 1).pipe(
         zip(errors$, (i, err) => ({ i: i, err: err })),
         mergeMap(({ i, err }) => {
-          console.time('A');
+          console.time('Duration bwt Retries');
           if (i === this.maxRetries) {
             throw err;
           }
           return timer(i * 1000).pipe(
             tap(() => {
               this.infoMessage7 = `Retried after ${i + 1} second(s)...`;
-              console.timeEnd('A');
             })
           );
         })

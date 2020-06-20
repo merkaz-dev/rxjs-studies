@@ -25,4 +25,7 @@ export class AppComponent {
   goToErrorhandling() {
     this.router.navigate(['errorhandling']);
   }
+  goToMulticasting() {
+    this.router.navigate(['multicasting']);
+  }
 }

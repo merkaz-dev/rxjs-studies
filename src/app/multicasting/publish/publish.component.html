@@ -1,0 +1,152 @@
+<p>
+  A <i><strong>connectable Observable</strong></i> resembles an ordinary
+  Observable, except that it does not begin emitting items when it is subscribed
+  to, but only when the Connect operator is applied to it. In this way you can
+  wait for all intended observers to subscribe to the Observable before the
+  Observable begins emitting items.
+</p>
+<p>
+  Тогда, когда применен оператор <i>publish()</i>, то
+  <i>Observable</i> трансформируется в <i>Connectable Observable</i>.
+  Connectable Observable похож на обычный Observable за исключением одного
+  момента. Он начинает производить элементы не тогда, когда на него
+  подписываются, а только тогда, когда на нем вызван оператор
+  <i>connect()</i> Проще говоря, <i>connect() </i>активирует
+  <i>Connectable Observable</i> и включает подписчиков. .
+</p>
+<h3>Разница между <i>publish().connect()</i> и <i>publish().refcount()</i></h3>
+<p>
+  Вы можете воспринимать оператор <i>refcount()</i> как магию, которая за Вас
+  обрабатывают отписку Observer'ов. <i>refcount()</i> вызывает
+  <i>connect()</i>
+  автоматически, когда подписывается первый Observer, так что нет нужды делать
+  это самостоятельно.
+</p>
+<p>
+  Когда Вы используете <i>publish().connect()</i>, Вам необходимо вручную
+  управлять механизмом очистки ресурсов вашего Observable (об этом говорилось в
+  примечании под спойлером). Ваша последовательность ведет себя как активная и
+  производит элементы все время, независимо от подписок.
+</p>
+
+<p>
+  С другой стороны, <i>publish().refcount()/share()</i> следит за том, как много
+  Observer'ов подписано на Observable и не отключает первых от последнего до тех
+  пор, пока существует хотя бы один подписчик. Другими словами, когда счетчик
+  подписчиков падает до нуля, Observable «умирает» и перестает производить
+  какие-либо элементы.
+</p>
+<p *ngIf="info" style="background-color: greenyellow;">
+  {{ info }}
+</p>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button
+      style="background-color: chartreuse;"
+      mat-button
+      (click)="stopSourcePublish($event)"
+    >
+      Stop Source Publish
+    </button>
+  </div>
+  <div>
+    <button
+      mat-button
+      (click)="publishConnect()"
+      style="background-color: chartreuse;"
+    >
+      Publish Connect
+    </button>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button
+      mat-button
+      (click)="subToPublish1()"
+      style="background-color: fuchsia;"
+    >
+      Subscribe to Publish() 1
+    </button>
+  </div>
+  <div>
+    <button
+      mat-button
+      (click)="subToPublish2()"
+      style="background-color: fuchsia;"
+    >
+      Subscribe to Publish() 2
+    </button>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button
+      mat-button
+      (click)="unsubFromPublish1()"
+      style="background-color: orange;"
+    >
+      Unsubscribe from Publish() 1
+    </button>
+  </div>
+
+  <div>
+    <button
+      mat-button
+      (click)="unsubFromPublish2()"
+      style="background-color: orange;"
+    >
+      Unsubscribe from Publish() 2
+    </button>
+  </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>publish value 1: {{ publishValue1 }}</div>
+  <div>publish value 2: {{ publishValue2 }}</div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button
+      mat-button
+      (click)="subToRefCount1()"
+      style="background-color: fuchsia;"
+    >
+      Subscribe to RefCount 1
+    </button>
+  </div>
+  <div>
+    <button
+      mat-button
+      (click)="subToRefCount2()"
+      style="background-color: fuchsia;"
+    >
+      Subscribe to RefCount 2
+    </button>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button
+      mat-button
+      (click)="unsubFromRefCount1()"
+      style="background-color: cornflowerblue;"
+    >
+      Unsubscribe from RefCount1
+    </button>
+  </div>
+  <div>
+    <button
+      mat-button
+      (click)="unsubFromRefCount2()"
+      style="background-color: cornflowerblue;"
+    >
+      Unsubscribe from RefCount2
+    </button>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>RefCount Value 1 {{ refCountValue1 }}</div>
+  <div>RefCount Value 2 {{ refCountValue2 }}</div>
+</div>
