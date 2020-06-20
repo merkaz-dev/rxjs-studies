@@ -69,3 +69,7 @@ a {
 .rxjs-card {
   max-width: 100%;
 }
+p {
+  padding-left: 10px;
+  padding-right: 10px;
+}
