@@ -1,0 +1,37 @@
+<p>
+  You could use another specialization of multicast called
+  <i> publishReplay()</i> to emit the last 1, 10, 100, or all of the most recent
+  values to all subscribers (obviously, this is another case of a warm
+  observable). This operator uses several parameters to determine the
+  characteristics of a buffer to maintain. And as with any of the buffering
+  operators, we caution you again that the use of buffers can be dangerous when
+  replaying entire sequences and the buffer grows indefinitely.
+</p>
+<p *ngIf="info" style="padding: 5px; background-color: chartreuse;">
+  {{ info }}
+</p>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button mat-button class="class1" (click)="addSub1()">Add Sub1</button>
+  </div>
+  <div>
+    <button mat-button class="class2" (click)="addSub2()">Add Sub2</button>
+  </div>
+  <div>
+    <button mat-button class="class3" (click)="connect()">Connect</button>
+  </div>
+</div>
+<br />
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button mat-button class="class1" (click)="unsubSub1()">Unsub Sub1</button>
+  </div>
+  <div>
+    <button mat-button class="class2" (click)="unsubSub2()">Unsub Sub2</button>
+  </div>
+</div>
+<br />
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>val1: {{ val1 }}</div>
+  <div>val2: {{ val2 }}</div>
+</div>

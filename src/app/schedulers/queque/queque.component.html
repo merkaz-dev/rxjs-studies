@@ -1,0 +1,80 @@
+<p>
+  <strong>null</strong> and <strong>queueScheduler</strong> both emitting data
+  in the same <i>mAcrotask</i>.
+</p>
+<p>So what is the difference between them?</p>
+<p>
+  Some factory functions like<strong><i> of</i></strong> or
+  <i><strong>range</strong></i> if no scheduler is defined just uses
+  <i>for</i> or <i>do-while</i> loop to emit all the values synchronously. So
+  they don’t use schedulers at all.
+</p>
+<p>
+  If we use <strong>queueScheduler</strong> — then RxJs just adds all values to
+  <i>scheduler queue</i> and then flush it. It happens in the same macrotask on
+  subscription event.
+</p>
+<p>For the customer who uses RxJS there is no context difference.</p>
+<div>
+  <h4 style="text-align: center;">Of Observable</h4>
+  <p style="text-align: center;">obs$1: <strong>of(1);</strong></p>
+  <p style="text-align: center;">obs$2: <strong>of(10, 20);</strong></p>
+  <div fxLayout="row" fxLayoutAlign="space-around">
+    <div fxFlex="100">
+      <button mat-button (click)="runOfWithNull()" class="class1">
+        Run CombineLatest with Of and NULL-scheduler
+      </button>
+      <div *ngIf="vOfNullArr.length > 0">
+        <ul>
+          <li *ngFor="let i of vOfNullArr">
+            {{ i }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div fxFlex="100">
+      <button mat-button (click)="runOfWithQueue()" class="class2">
+        Run CombineLatest with Of and QUEUE-scheduler
+      </button>
+      <div *ngIf="vOfQueueArr.length > 0">
+        <ul>
+          <li *ngFor="let i of vOfQueueArr">
+            {{ i }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <h4 style="text-align: center;">From Observable</h4>
+  <p style="text-align: center;">obs$1: <strong>from([1]);</strong></p>
+  <p style="text-align: center;">obs$2: <strong>from([10, 20]);</strong></p>
+  <div fxLayout="row" fxLayoutAlign="space-around">
+    <div fxFlex="100">
+      <button mat-button (click)="runFromWithNull()" class="class1">
+        Run CombineLatest with From and NULL-scheduler
+      </button>
+      <div *ngIf="vFromNullArr.length > 0">
+        <ul>
+          <li *ngFor="let i of vFromNullArr">
+            {{ i }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div fxFlex="100">
+      <button mat-button (click)="runFromWithQueue()" class="class2">
+        Run CombineLatest with From and QUEUE-scheduler
+      </button>
+      <div *ngIf="vFromQueueArr.length > 0">
+        <ul>
+          <li *ngFor="let i of vFromQueueArr">
+            {{ i }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

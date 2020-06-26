@@ -8,24 +8,5 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'rxjs';
-  constructor(private router: Router) {}
-
-  goToFlat() {
-    this.router.navigate(['flat']);
-  }
-  goToNested() {
-    this.router.navigate(['nested']);
-  }
-  goToComparison() {
-    this.router.navigate(['comparison']);
-  }
-  goToCombineLatest() {
-    this.router.navigate(['combinelatest']);
-  }
-  goToErrorhandling() {
-    this.router.navigate(['errorhandling']);
-  }
-  goToMulticasting() {
-    this.router.navigate(['multicasting']);
-  }
+  constructor() {}
 }

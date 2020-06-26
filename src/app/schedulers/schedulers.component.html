@@ -1,0 +1,30 @@
+<p>
+  <strong
+    >A scheduler controls when a subscription starts and when notifications are
+    delivered.</strong
+  >
+</p>
+<p>What does it mean — when notifications are delivered?</p>
+<p>
+  This means that we can deliver event from observable to a subscriber in the
+  same <strong>mAcrotask</strong>, in <strong>mIcrotask</strong>(that happens
+  just after current <strong>mAcrotask</strong>) or we scheduler delivery to be
+  done in separate <strong>mAcrotask</strong> (so we put the task to the event
+  loop queue).
+</p>
+<div>
+  <img
+    src="assets/img/schedulers.png"
+    alt="schedulers"
+    style="width: 100%; height: auto;"
+  />
+</div>
+<mat-tab-group mat-align-tabs="start">
+  <!-- <mat-tab label="Queue"> </mat-tab> -->
+  <mat-tab label="Queue">
+    <app-queque></app-queque>
+  </mat-tab>
+  <mat-tab label="Queue 2">
+    <app-queque2></app-queque2>
+  </mat-tab>
+</mat-tab-group>

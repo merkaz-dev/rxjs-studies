@@ -1,0 +1,33 @@
+<p>
+  <i><strong>publishLast()</strong></i> returns a connectable observable
+  sequence that shares a single subscription containing only the last
+  notification.
+</p>
+<p *ngIf="info" style="padding: 5px; background-color: chartreuse;">
+  {{ info }}
+</p>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button mat-button class="class1" (click)="addSub1()">Add Sub1</button>
+  </div>
+  <div>
+    <button mat-button class="class2" (click)="addSub2()">Add Sub2</button>
+  </div>
+  <div>
+    <button mat-button class="class3" (click)="connect()">Connect</button>
+  </div>
+</div>
+<br />
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button mat-button class="class1" (click)="unsubSub1()">Unsub Sub1</button>
+  </div>
+  <div>
+    <button mat-button class="class2" (click)="unsubSub2()">Unsub Sub2</button>
+  </div>
+</div>
+<br />
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>val1: {{ val1 }}</div>
+  <div>val2: {{ val2 }}</div>
+</div>
