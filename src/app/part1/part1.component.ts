@@ -14,6 +14,9 @@ export class Part1Component implements OnInit {
   goToFlat() {
     this.router.navigate(['flat']);
   }
+  goToConnectableObs() {
+    this.router.navigate(['connetableobs']);
+  }
   goToNested() {
     this.router.navigate(['nested']);
   }
