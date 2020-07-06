@@ -1,0 +1,92 @@
+<h4 style="text-align: center;">
+  Multicast Operators | Sharing Operators | Connectable Observables
+</h4>
+<p>
+  <strong>Shared subscription:</strong> The returned observable shares a single
+  underlying subscription to the source observable. This is the case for all of
+  these operators.
+</p>
+<p>
+  <strong>Connectable:</strong> The returned observable does not push events
+  until the connect() function is called. This allows multiple subscribers to
+  subscribe before any events are sent.
+</p>
+<p>
+  <strong>Reference counting:</strong> The returned observable reference counts
+  the number of subscribers it has. When the number of subscribers goes from
+  zero to one, subscribes to the source observable. When the number goes from
+  one to zero, unsubscribe and dispose the source observable. Note: the
+  underlying observable will be re-subscribed each time the number of
+  subscribers goes to zero to one. However there will never be more than one
+  subscription to the source observable at a time, and all concurrent
+  subscribers will share the same subscription to the source observable. If the
+  underlying observable completes or send an error, the underlying observable
+  might not be re-subscribed. This is a gray area I suggest avoiding, which can
+  be done by ensuring there are no further subscribers after the reference count
+  drops to zero.
+</p>
+<p>
+  <strong>Replays events:</strong> The operator will replay events from the
+  source observable to subscribers who after those events are sent. For
+  replay(bufferSize) and shareReplay(bufferSize), the number of events is at
+  most bufferSize. For shareReplayLatestWhileConnected(), at most one event is
+  replayed. When the reference count of subscribers drops to zero, the replay
+  buffer is cleared. Therefore subscribers that cause the reference count to go
+  from zero to one do not get an event replayed.
+</p>
+<div style="margin-bottom: 20px;">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Operator Column -->
+    <ng-container matColumnDef="operator">
+      <mat-header-cell *matHeaderCellDef> Operator </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <strong
+          ><i>{{ element.operator }}</i></strong
+        >
+      </mat-cell>
+    </ng-container>
+
+    <!-- Shared Subscription Column -->
+    <ng-container matColumnDef="sharedSubscription">
+      <mat-header-cell *matHeaderCellDef>
+        Shared Subscription?
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.sharedSubscription }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Connectable Column -->
+    <ng-container matColumnDef="connectable">
+      <mat-header-cell *matHeaderCellDef> Connectable </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.connectable }} </mat-cell>
+    </ng-container>
+
+    <!-- Connectable Column -->
+    <ng-container matColumnDef="referenceCounting">
+      <mat-header-cell *matHeaderCellDef> Reference Counting </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.referenceCounting }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Replays Events Column -->
+    <ng-container matColumnDef="replaysEvents">
+      <mat-header-cell *matHeaderCellDef> Replays Events </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.replaysEvents }}
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Publish"><app-publish></app-publish></mat-tab>
+    <mat-tab label="PublishReplay">
+      <app-publish-replay></app-publish-replay>
+    </mat-tab>
+    <mat-tab label="Share"><app-share></app-share></mat-tab>
+    <mat-tab label="ShareReplay"><app-share-replay></app-share-replay></mat-tab>
+  </mat-tab-group>
+</div>

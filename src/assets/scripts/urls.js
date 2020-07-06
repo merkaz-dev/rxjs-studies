@@ -2,4 +2,15 @@ function getUrls(startDate, endDate) {
   return `https://webhooks.mongodb-stitch.com/api/client/v2.0/app/wikistorestitchapp-vgkfz/service/wikiStoreStats/incoming_webhook/s_ch_2_clicks_by_sellers?startDate=${startDate}&endDate=${endDate}&secret=wikistore`;
 }
 
-export { getUrls };
+function getCoursesUrl() {
+  return "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/rxjs-studies-backend-bhupb/service/RxJsServcies/incoming_webhook/s_01_get_courses?secret=rxjs";
+}
+
+function getCourseByIdUrl(courseId) {
+  return `https://webhooks.mongodb-stitch.com/api/client/v2.0/app/rxjs-studies-backend-bhupb/service/RxJsServcies/incoming_webhook/s_02_get_course_by_id?secret=rxjs&courseId=${courseId}`;
+}
+
+function updateCourseUrl() {
+  return "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/rxjs-studies-backend-bhupb/service/RxJsServcies/incoming_webhook/s_03_edit_course?secret=rxjs";
+}
+export { getUrls, getCoursesUrl, getCourseByIdUrl, updateCourseUrl };

@@ -1,0 +1,25 @@
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <h5>Beginner Courses</h5>
+    <div *ngFor="let i of beginnerCourses">
+      <h5 style="text-align: center;">Course N{{ i.id }}</h5>
+      <ul>
+        <li>{{ i.description }}</li>
+        <li>{{ i.category }}</li>
+        <li>{{ i.level }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div>
+    <h5>Advanced Courses</h5>
+    <div *ngFor="let i of advancedCourses">
+      <h5 style="text-align: center;">Course N{{ i.id }}</h5>
+      <ul>
+        <li>{{ i.description }}</li>
+        <li>{{ i.category }}</li>
+        <li>{{ i.level }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

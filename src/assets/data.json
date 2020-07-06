@@ -1,0 +1,34 @@
+{
+  "payload": [
+    {
+      "id": 1,
+      "description": "RxJs",
+      "category": "Programming",
+      "level": "BEGINNER"
+    },
+    {
+      "id": 2,
+      "description": "RxJs Advanced",
+      "category": "Programming",
+      "level": "ADVANCED"
+    },
+    {
+      "id": 3,
+      "description": "C#",
+      "category": "OOP",
+      "level": "BEGINNER"
+    },
+    {
+      "id": 4,
+      "description": "Java",
+      "category": "OOP",
+      "level": "ADVANCED"
+    },
+    {
+      "id": 5,
+      "description": "Scala",
+      "category": "OOP",
+      "level": "ADVANCED"
+    }
+  ]
+}

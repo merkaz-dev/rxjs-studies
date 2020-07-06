@@ -1,0 +1,27 @@
+<p *ngIf="info" style="background-color: darkgray; color: white;">{{ info }}</p>
+<div style="padding: 15px;" fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button mat-button class="class2" (click)="subscribeA()">
+      Subscribe A
+    </button>
+  </div>
+  <div>
+    <button mat-button class="class3" (click)="subscribeB()">
+      Subscribe B
+    </button>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button mat-button class="class3" (click)="unsubscribeA()">
+      Unsubscribe A
+    </button>
+  </div>
+  <div>
+    <button mat-button class="class1" (click)="unsubscribeB()">
+      Unsubscribe B
+    </button>
+  </div>
+</div>
+<p>aVal: {{ aVal }}</p>
+<p>bVal: {{ bVal }}</p>

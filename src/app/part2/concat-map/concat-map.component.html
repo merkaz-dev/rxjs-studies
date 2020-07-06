@@ -1,0 +1,44 @@
+<h3 style="text-align: center;">CONCAT_MAP Course Editing</h3>
+<div fxLayout="row" fxLayoutAlign="space-round">
+  <div *ngIf="course" fxFlex="100">
+    <h5>Original</h5>
+    <ul>
+      <li>Id: {{ course.id }}</li>
+      <li>Description: {{ course.description }}</li>
+      <li>Category: {{ course.category }}</li>
+      <li>Level: {{ course.level }}</li>
+    </ul>
+  </div>
+  <div *ngIf="course" fxFlex="100">
+    <form class="example-form" [formGroup]="form" (ngSubmit)="save()">
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Description</mat-label>
+          <input
+            matInput
+            placeholder="Description"
+            formControlName="description"
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Level</mat-label>
+          <mat-select formControlName="level">
+            <mat-option value="BEGINNER">Beginner</mat-option>
+            <mat-option value="INTERMEDIATE">Intermediate</mat-option>
+            <mat-option value="ADVANCED">Advanced</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Category</mat-label>
+          <input matInput placeholder="Category" formControlName="category" />
+        </mat-form-field>
+      </div>
+    </form>
+    <button mat-button (click)="save()">Save</button>
+  </div>
+</div>
