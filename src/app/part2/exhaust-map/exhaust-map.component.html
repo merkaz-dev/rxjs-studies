@@ -1,1 +1,60 @@
-<p>exhaust-map works!</p>
+<h3 style="text-align: center;">Exhaust Map</h3>
+<p>By mapping an Observable, we</p>
+<ol>
+  <li>
+    We return an Observable from a map function.
+  </li>
+  <li>We "flatten" this Observable (subscribe to it)</li>
+  <li>Now we need to decide Which strategy we are going to use</li>
+</ol>
+
+<p>
+  There are 4 "Flattening Strategies"
+</p>
+<ul>
+  <li>
+    <strong>“Merge” Strategy</strong> — deciding not to do anything, basically,
+    we just keep subscribing to every new observable that we return from the
+    map.
+  </li>
+  <li>
+    <strong>
+      “Switch” Strategy
+    </strong>
+    — unsubscribing from the last mapped observable, when the new one arrives.
+  </li>
+  <li>
+    <strong>“Concat” Strategy</strong> — Queuing up every new Observable, and
+    subscribing to a new observable only when the last observable completed.
+  </li>
+  <li>
+    <strong>“Exhaust” strategy</strong> — the “don’t interrupt me” strategy,
+    ignores (and never subscribe to) any new mapped Observable while the current
+    Observable is still emitting values.
+  </li>
+</ul>
+
+<p>
+  When we want to simply ignore the events in the from the outer stream, during
+  the execution of the inner stream, <i>exhaustMap()</i> is the correct choice.
+  So when using this mapping strategy we simply do not execute mapping at all,
+  it the outer event appears before the completion of the inner stream. This
+  could be useful when we want to minimize the number of HTTP calls going out
+  from the browser
+</p>
+<p>
+  Оператор <strong><i>RxJS exhaustMap()</i></strong> возвращает новый Observable
+  в ответ на каждое значение исходного объекта Observable, но выполняет новый
+  объект только в том случае, если в текущий момент не выполняется другой. Иначе
+  значение будет проигнорировано.
+</p>
+
+<p>
+  <strong>RxJS exhaustMap()</strong> входным параметром передается функция,
+  которая возвращает новый объект Observable и принимает два аргумента:
+  <i> текущее значение исходного объекта и его индекс. </i>
+</p>
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab label="Example 1"><app-exhaust-map1></app-exhaust-map1></mat-tab>
+  <mat-tab label="Example 2"><app-exhaust-map2></app-exhaust-map2></mat-tab>
+</mat-tab-group>

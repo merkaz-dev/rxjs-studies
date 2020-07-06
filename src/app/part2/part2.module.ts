@@ -14,6 +14,8 @@ import { ShareReplayComponent } from './connect-obs/share-replay/share-replay.co
 import { OwnObsComponent } from './own-obs/own-obs.component';
 import { ConcatMapComponent } from './concat-map/concat-map.component';
 import { ExhaustMapComponent } from './exhaust-map/exhaust-map.component';
+import { ExhaustMap1Component } from './exhaust-map1/exhaust-map1.component';
+import { ExhaustMap2Component } from './exhaust-map2/exhaust-map2.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { ExhaustMapComponent } from './exhaust-map/exhaust-map.component';
     OwnObsComponent,
     ConcatMapComponent,
     ExhaustMapComponent,
+    ExhaustMap1Component,
+    ExhaustMap2Component,
   ],
   imports: [
     CommonModule,

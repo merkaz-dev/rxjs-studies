@@ -23,7 +23,9 @@ function getHttpObsAllCourses() {
 
 function getHttpObsSingleCourse(courseId) {
   return new Observable((observer) => {
-    fetch(getCourseByIdUrl(courseId))
+    const controller = new AbortController();
+    const signal = controller.signal;
+    fetch(getCourseByIdUrl(courseId), { signal })
       .then((response) => {
         return response.json();
       })
@@ -35,6 +37,7 @@ function getHttpObsSingleCourse(courseId) {
       .catch((err) => {
         observer.error(err);
       });
+    return () => controller.abort();
   }).pipe(
     map((v) => {
       return v["payload"];
@@ -47,19 +50,25 @@ function getHttpObsSingleCourse(courseId) {
 
 function updateHttpObsSingleCourse(data) {
   return new Observable((observer) => {
-    fetch(updateCourseUrl(), {
-      method: "PUT", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
-      headers: {
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: "follow", // manual, *follow, error
-      referrerPolicy: "no-referrer", // no-referrer, *client
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
-    })
+    const controller = new AbortController();
+    const signal = controller.signal;
+    fetch(
+      updateCourseUrl(),
+      { signal },
+      {
+        method: "PUT", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *client
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+      }
+    )
       .then((result) => {
         return result.json();
       })
@@ -70,6 +79,8 @@ function updateHttpObsSingleCourse(data) {
       .catch((err) => {
         observer.error(err);
       });
+
+    return () => controller.abort();
   });
 }
 async function postData(url, data) {

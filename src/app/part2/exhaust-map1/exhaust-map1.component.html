@@ -1,0 +1,34 @@
+<div fxLayoutAlign="space-around" fxLayout="row">
+  <div style="margin: 10px;" fxFlex="100">
+    <h5 style="text-align: center;">Observable Inner (Result)</h5>
+    <mat-list role="list">
+      <mat-list-item
+        *ngFor="let el of arr; let i = index"
+        [style.background-color]="i % 2 === 0 ? '#FDDC22' : '#D61A46'"
+        style="color: whitesmoke;"
+      >
+        value: {{ el.value }} index: {{ el.index }}
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div style="margin: 10px;" fxFlex="100">
+    <h5 style="text-align: center;">
+      Observable Outter (Some values ignored utill Inner Obs completes
+    </h5>
+    <mat-list role="list">
+      <mat-list-item
+        *ngFor="let el of arrObs1; let i = index"
+        [style.background-color]="i % 2 === 0 ? 'steelblue' : 'red'"
+        style="color: whitesmoke;"
+      >
+        value: {{ el.value }} index: {{ el.index }}
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div><button mat-button (click)="run()">Run</button></div>
+  <div><button mat-button #stop>Double Click to Stop</button></div>
+  <div><button mat-button (click)="clear()">Clear Array</button></div>
+</div>
