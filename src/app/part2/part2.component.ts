@@ -24,4 +24,8 @@ export class Part2Component implements OnInit {
   goToConcatMap() {
     this.router.navigate(['concatmap']);
   }
+
+  goToDistinctUntilChanged() {
+    this.router.navigate(['distinctuntilchanged']);
+  }
 }

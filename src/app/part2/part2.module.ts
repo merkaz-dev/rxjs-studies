@@ -16,6 +16,10 @@ import { ConcatMapComponent } from './concat-map/concat-map.component';
 import { ExhaustMapComponent } from './exhaust-map/exhaust-map.component';
 import { ExhaustMap1Component } from './exhaust-map1/exhaust-map1.component';
 import { ExhaustMap2Component } from './exhaust-map2/exhaust-map2.component';
+import { DistinctUntilChangedComponent } from './distinct-until-changed/distinct-until-changed.component';
+import { DistinctUntilChanged1Component } from './distinct-until-changed1/distinct-until-changed1.component';
+import { DistinctUntilChanged2Component } from './distinct-until-changed2/distinct-until-changed2.component';
+import { TypeaheadComponent } from './typeahead/typeahead.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,10 @@ import { ExhaustMap2Component } from './exhaust-map2/exhaust-map2.component';
     ExhaustMapComponent,
     ExhaustMap1Component,
     ExhaustMap2Component,
+    DistinctUntilChangedComponent,
+    DistinctUntilChanged1Component,
+    DistinctUntilChanged2Component,
+    TypeaheadComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,42 @@
+<p>
+  <i>distinctUntilChanged((p: Person, q: Person) => p.name === q.name) </i>
+</p>
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-around"
+  style="background-color: violet;"
+>
+  <div fxFlex="100">
+    <h4 style="text-align: center;">Original</h4>
+    <ol>
+      <li
+        *ngFor="let p of original"
+        [style.backgroundColor]="p.bgColor"
+        style="color: yellow;"
+      >
+        name: {{ p.name }} age: {{ p.age }}
+      </li>
+    </ol>
+  </div>
+
+  <div fxFlex="100">
+    <h4 style="text-align: center;">Mutated</h4>
+    <ol>
+      <li
+        *ngFor="let p of mutated"
+        [style.backgroundColor]="p.bgColor"
+        style="color: yellow;"
+      >
+        name: {{ p.name }} age: {{ p.age }}
+      </li>
+    </ol>
+  </div>
+</div>
+<div fxLayoutAlign="space-around" fxLayout="row">
+  <div>
+    <button mat-button (click)="run()">Run</button>
+  </div>
+  <div>
+    <button mat-button (click)="clear()">Clear</button>
+  </div>
+</div>

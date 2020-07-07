@@ -1,0 +1,21 @@
+<h3 style="text-align: center;">Distinct Until Changed</h3>
+<p>
+  Результирующая наблюдаемая изменяет своё значение, только если оно отличается
+  от предыдущего значения. Для определения разницы между значениями по умолчанию
+  используется обычное сравнение (то есть «===»).
+</p>
+<p>
+  Опционально <i>distinctUntilChanged()</i> принимает функцию сравнения. Эта
+  функция принимает два параметра — предыдущее и текущее значения преобразуемой
+  наблюдаемой — и должна вернуть булевое значение —ложь, если старое значение
+  отличается от нового, и истину, если старое значение не отличается от нового.
+</p>
+
+<mat-tab-group>
+  <mat-tab label="Without Comparison Function">
+    <app-distinct-until-changed1></app-distinct-until-changed1>
+  </mat-tab>
+  <mat-tab label="With Comparison Function">
+    <app-distinct-until-changed2></app-distinct-until-changed2>
+  </mat-tab>
+</mat-tab-group>
