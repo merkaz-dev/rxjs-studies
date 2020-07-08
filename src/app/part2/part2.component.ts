@@ -25,6 +25,10 @@ export class Part2Component implements OnInit {
     this.router.navigate(['concatmap']);
   }
 
+  goToTypeahead() {
+    this.router.navigate(['typeahead']);
+  }
+
   goToDistinctUntilChanged() {
     this.router.navigate(['distinctuntilchanged']);
   }

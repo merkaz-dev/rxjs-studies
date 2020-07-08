@@ -13,4 +13,19 @@ function getCourseByIdUrl(courseId) {
 function updateCourseUrl() {
   return "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/rxjs-studies-backend-bhupb/service/RxJsServcies/incoming_webhook/s_03_edit_course?secret=rxjs";
 }
-export { getUrls, getCoursesUrl, getCourseByIdUrl, updateCourseUrl };
+
+function getLessonsBySearchExpression(search) {
+  return `https://webhooks.mongodb-stitch.com/api/client/v2.0/app/rxjs-studies-backend-bhupb/service/RxJsServcies/incoming_webhook/s_04_search_lessons_by_expression?search=${search}&secret=rxjs`;
+}
+
+function getLessonsUrl() {
+  return `https://webhooks.mongodb-stitch.com/api/client/v2.0/app/rxjs-studies-backend-bhupb/service/RxJsServcies/incoming_webhook/s_05_get_lessons?secret=rxjs`;
+}
+export {
+  getUrls,
+  getLessonsUrl,
+  getCoursesUrl,
+  updateCourseUrl,
+  getCourseByIdUrl,
+  getLessonsBySearchExpression,
+};

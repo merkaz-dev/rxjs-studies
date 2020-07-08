@@ -1,1 +1,18 @@
-<p>typeahead works!</p>
+<h3 style="text-align: center;">Lessons</h3>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <form style="width: 200px;">
+      <mat-form-field [formGroup]="form" class="example-full-width">
+        <mat-label>Search</mat-label>
+        <input #searchInput matInput formControlName="description" />
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+<div>
+  <mat-list *ngIf="initialLesson$ | async as lessons">
+    <mat-list-item *ngFor="let l of lessons">
+      {{ l.description }} {{ l.duration }}
+    </mat-list-item>
+  </mat-list>
+</div>

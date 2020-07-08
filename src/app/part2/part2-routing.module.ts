@@ -8,6 +8,7 @@ import { ConcatMapComponent } from './concat-map/concat-map.component';
 import { ExhaustMapComponent } from './exhaust-map/exhaust-map.component';
 import { DistinctUntilChanged1Component } from './distinct-until-changed1/distinct-until-changed1.component';
 import { DistinctUntilChangedComponent } from './distinct-until-changed/distinct-until-changed.component';
+import { TypeaheadComponent } from './typeahead/typeahead.component';
 
 const routes: Routes = [
   { path: '', component: Part2Component },
@@ -15,6 +16,8 @@ const routes: Routes = [
   { path: 'ownobs', component: OwnObsComponent },
   { path: 'concatmap', component: ConcatMapComponent },
   { path: 'exhaustmap', component: ExhaustMapComponent },
+  { path: 'typeahead', component: TypeaheadComponent },
+
   { path: 'distinctuntilchanged', component: DistinctUntilChangedComponent },
 ];
 
