@@ -29,6 +29,10 @@ export class Part2Component implements OnInit {
     this.router.navigate(['typeahead']);
   }
 
+  goToDelayWhen() {
+    this.router.navigate(['delaywhen']);
+  }
+
   goToDistinctUntilChanged() {
     this.router.navigate(['distinctuntilchanged']);
   }

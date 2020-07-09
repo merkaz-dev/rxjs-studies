@@ -1,0 +1,45 @@
+<h3 style="text-align: center;">DelayWhen</h3>
+<p>
+  Оператор RxJS delayWhen() возвращает новый Observable и до момента его
+  завершения или нового значения откладывает передачу значения исходного объекта
+  следующему обработчику.
+</p>
+<p>
+  <i><strong>RxJS delayWhen()</strong></i> параметром принимает функцию, которая
+  возвращает новый Observable и инициирует его выполнение. Самой функции
+  передается два аргумента:
+</p>
+<ul>
+  <li>Текущее значение исходного объекта</li>
+  <li>
+    Индекс текущего значения
+  </li>
+</ul>
+<p>
+  <i>delayWhen()</i> time shifts each emitted value from the source Observable
+  by a time span determined by another Observable. When the source emits a
+  value, the delayDurationSelector function is called with the source value as
+  argument, and should return an Observable, called the "duration" Observable.
+  The source value is emitted on the output Observable only when the duration
+  Observable emits a value or completes. The completion of the notifier
+  triggering the emission of the source value is deprecated behavior and will be
+  removed in future versions.
+</p>
+
+<p>
+  Optionally, <i>delayWhen()</i> takes a second argument,
+  <i>subscriptionDelay</i>, which is an Observable. When
+  <i>subscriptionDelay</i> emits its first value or completes, the source
+  Observable is subscribed to and starts behaving like described in the previous
+  paragraph. If <i>subscriptionDelay</i> is not provided,
+  <i>delayWhen()</i> will subscribe to the source Observable as soon as the
+  output Observable is subscribed.
+</p>
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab label="Way 1: triggered by timer">
+    <app-delay-when1></app-delay-when1>
+  </mat-tab>
+  <mat-tab label="Way 2: triggered by button click">
+    <app-delay-when2></app-delay-when2>
+  </mat-tab>
+</mat-tab-group>

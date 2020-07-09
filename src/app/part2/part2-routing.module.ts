@@ -9,15 +9,16 @@ import { ExhaustMapComponent } from './exhaust-map/exhaust-map.component';
 import { DistinctUntilChanged1Component } from './distinct-until-changed1/distinct-until-changed1.component';
 import { DistinctUntilChangedComponent } from './distinct-until-changed/distinct-until-changed.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
+import { DelayWhenComponent } from './delay-when/delay-when.component';
 
 const routes: Routes = [
   { path: '', component: Part2Component },
-  { path: 'connobs', component: ConnectObsComponent },
   { path: 'ownobs', component: OwnObsComponent },
+  { path: 'connobs', component: ConnectObsComponent },
   { path: 'concatmap', component: ConcatMapComponent },
-  { path: 'exhaustmap', component: ExhaustMapComponent },
   { path: 'typeahead', component: TypeaheadComponent },
-
+  { path: 'delaywhen', component: DelayWhenComponent },
+  { path: 'exhaustmap', component: ExhaustMapComponent },
   { path: 'distinctuntilchanged', component: DistinctUntilChangedComponent },
 ];
 

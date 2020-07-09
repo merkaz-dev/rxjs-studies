@@ -27,40 +27,6 @@ import { fromEvent, Observable } from 'rxjs';
 export class ExhaustMap1Component implements OnInit, AfterViewInit {
   arr = [];
   arrObs1 = [];
-  // arr2: any[];
-
-  // obs1$ = from([
-  //   { value: 'a-0', bgColor: '#D61A46' },
-  //   { value: 'a-1', bgColor: '#D61A46' },
-  //   { value: 'a-2', bgColor: '#D61A46' },
-  //   { value: 'a-3', bgColor: '#D61A46' },
-  //   { value: 'a-4', bgColor: '#D61A46' },
-  //   { value: 'a-5', bgColor: '#D61A46' },
-  //   { value: 'a-6', bgColor: '#D61A46' },
-  // ]).pipe(
-  //   concatMap((v, i) => {
-  //     console.log(`v: ${v} i: ${i}`);
-  //     return of(v).pipe(delay(2000));
-  //   }),
-  //   tap((v) => {
-  //     // this.arr1.push(v);
-  //   })
-  // );
-
-  // obs2$ = from([
-  //   { value: 'b-0', bgColor: '#FDDC22' },
-  //   { value: 'b-1', bgColor: '#FDDC22' },
-  //   { value: 'b-2', bgColor: '#FDDC22' },
-  //   { value: 'b-3', bgColor: '#FDDC22' },
-  //   { value: 'b-4', bgColor: '#FDDC22' },
-  //   { value: 'b-5', bgColor: '#FDDC22' },
-  //   { value: 'b-6', bgColor: '#FDDC22' },
-  // ]).pipe(
-  //   concatMap((v, i) => {
-  //     console.log(`v2: ${v} i2: ${i}`);
-  //     return of(v).pipe(delay(500));
-  //   })
-  // );
 
   @ViewChild('stop', { static: false }) stop: ElementRef;
 

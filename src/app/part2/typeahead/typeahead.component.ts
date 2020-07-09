@@ -16,6 +16,7 @@ import {
   debounceTime,
   distinctUntilChanged,
   switchMap,
+  startWith,
 } from 'rxjs/operators';
 
 export interface Lesson {
@@ -46,13 +47,15 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
       map(
         (event: KeyboardEvent) => (event.target as HTMLTextAreaElement).value
       ),
+      startWith(''),
       debounceTime(400),
       distinctUntilChanged(),
       switchMap((search) => {
         return this.searchLessons(search);
       })
     );
-    this.initialLesson$ = concat(this.lessons$, searchLessons$);
+    // this.initialLesson$ = concat(this.lessons$, searchLessons$);
+    this.initialLesson$ = searchLessons$;
   }
 
   private getLessons(): Observable<Lesson[]> {
@@ -60,7 +63,13 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
       const controller = new AbortController();
       const signal = controller.signal;
       fetch(getLessonsUrl(), { signal })
-        .then((res) => res.json())
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            observer.error(`Request failed with statud code ${res.status}`);
+          }
+        })
         .then((res) => {
           observer.next(res);
           observer.complete();
@@ -77,7 +86,13 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
       const controller = new AbortController();
       const signal = controller.signal;
       fetch(getLessonsBySearchExpression(search), { signal })
-        .then((res) => res.json())
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            observer.error(`Request failed with statud code ${res.status}`);
+          }
+        })
         .then((res) => {
           observer.next(res);
           observer.complete();

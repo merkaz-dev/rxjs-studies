@@ -1,0 +1,12 @@
+<p *ngIf="info2" style="background-color: red; color: white;">
+  {{ info2 }}
+</p>
+<p *ngIf="info" style="background-color: steelblue; color: white;">
+  {{ info }}
+</p>
+<p>message: {{ message }}</p>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div><button mat-button (click)="subscribe()">Subscribe</button></div>
+  <div><button mat-button (click)="run($event)">Run</button></div>
+  <div><button mat-button (click)="clear()">Clear</button></div>
+</div>

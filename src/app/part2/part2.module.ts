@@ -17,6 +17,9 @@ import { ExhaustMapComponent } from './exhaust-map/exhaust-map.component';
 import { ExhaustMap1Component } from './exhaust-map1/exhaust-map1.component';
 import { ExhaustMap2Component } from './exhaust-map2/exhaust-map2.component';
 import { DistinctUntilChangedComponent } from './distinct-until-changed/distinct-until-changed.component';
+import { DelayWhenComponent } from './delay-when/delay-when.component';
+import { DelayWhen1Component } from './delay-when1/delay-when1.component';
+import { DelayWhen2Component } from './delay-when2/delay-when2.component';
 import { DistinctUntilChanged1Component } from './distinct-until-changed1/distinct-until-changed1.component';
 import { DistinctUntilChanged2Component } from './distinct-until-changed2/distinct-until-changed2.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
@@ -32,6 +35,9 @@ import { TypeaheadComponent } from './typeahead/typeahead.component';
     OwnObsComponent,
     ConcatMapComponent,
     ExhaustMapComponent,
+    DelayWhenComponent,
+    DelayWhen1Component,
+    DelayWhen2Component,
     ExhaustMap1Component,
     ExhaustMap2Component,
     DistinctUntilChangedComponent,
