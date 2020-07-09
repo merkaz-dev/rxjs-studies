@@ -1,0 +1,26 @@
+<h3 style="text-align: center;">Throttle Exmaple 1</h3>
+<p>Hurry up! Type in some stuff! Promise will fire in 5 sec!</p>
+<p>message: {{ message }}</p>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <form style="width: 200px;">
+      <mat-form-field [formGroup]="form" class="example-full-width">
+        <mat-label>Search</mat-label>
+        <input #searchInput matInput formControlName="description" />
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+<h3 style="text-align: center;">Throttle Exmaple 2</h3>
+<h4 style="text-align: center;">timer (click 'Run' and 'dblclick' to stop):</h4>
+
+<p>{{ timer }}</p>
+<p *ngIf="done" style="background-color: violet;">{{ done }}</p>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button mat-button mat-button (click)="run()">Run</button>
+  </div>
+  <div>
+    <button mat-button mat-button (click)="clear()">Clear</button>
+  </div>
+</div>

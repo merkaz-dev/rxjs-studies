@@ -23,6 +23,9 @@ import { DelayWhen2Component } from './delay-when2/delay-when2.component';
 import { DistinctUntilChanged1Component } from './distinct-until-changed1/distinct-until-changed1.component';
 import { DistinctUntilChanged2Component } from './distinct-until-changed2/distinct-until-changed2.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
+import { ThrottlingComponent } from './throttling/throttling.component';
+import { ThrottleComponent } from './throttle/throttle.component';
+import { ThrottleTimeComponent } from './throttle-time/throttle-time.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { TypeaheadComponent } from './typeahead/typeahead.component';
     DistinctUntilChanged1Component,
     DistinctUntilChanged2Component,
     TypeaheadComponent,
+    ThrottlingComponent,
+    ThrottleComponent,
+    ThrottleTimeComponent,
   ],
   imports: [
     CommonModule,

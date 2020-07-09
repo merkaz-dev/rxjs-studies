@@ -1,0 +1,29 @@
+<h3>Throttling</h3>
+<h4>throttleTime(duration: number)</h4>
+<p>
+  Принимает длительность в миллисекундах. Результирующая наблюдаемая изменяет
+  своё значение, только если с момента последнего изменения результирующей
+  наблюдаемой прошёл заданный промежуток времени.
+</p>
+<p>
+  Допустим мы указали этому оператору длительность в 500 мс. Когда преобразуемая
+  наблюдаемая изменит своё значение, <i>throttleTime()</i> поставит таймер на
+  500 мс. До окончания таймера в результирующую наблюдаемую не попадут никакие
+  новые значения преобразуемой наблюдаемой. Сразу после окончания таймера
+  результирующая наблюдаемая примет последнее значение преобразуемой
+  наблюдаемой. Если после окончания таймера преобразуемая наблюдаемая снова
+  изменит своё значение, <i>throttleTime()</i>снова поставит таймер.
+</p>
+<p style="background-color: red; color: white;">
+  Both <i>throttle()</i> and <i>throttleTime()</i> doesn't guarantee that the
+  value is the latest value in the stream.
+</p>
+<p><i>throttle(() => interval(2000)) === throttleTime(2000)</i></p>
+<mat-tab-group>
+  <mat-tab label="Throttle">
+    <app-throttle></app-throttle>
+  </mat-tab>
+  <mat-tab label="ThrottleTime">
+    <app-throttle-time></app-throttle-time>
+  </mat-tab>
+</mat-tab-group>

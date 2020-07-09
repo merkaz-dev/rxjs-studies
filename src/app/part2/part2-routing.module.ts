@@ -10,6 +10,7 @@ import { DistinctUntilChanged1Component } from './distinct-until-changed1/distin
 import { DistinctUntilChangedComponent } from './distinct-until-changed/distinct-until-changed.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
 import { DelayWhenComponent } from './delay-when/delay-when.component';
+import { ThrottlingComponent } from './throttling/throttling.component';
 
 const routes: Routes = [
   { path: '', component: Part2Component },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'typeahead', component: TypeaheadComponent },
   { path: 'delaywhen', component: DelayWhenComponent },
   { path: 'exhaustmap', component: ExhaustMapComponent },
+  { path: 'throttling', component: ThrottlingComponent },
   { path: 'distinctuntilchanged', component: DistinctUntilChangedComponent },
 ];
 

@@ -33,6 +33,10 @@ export class Part2Component implements OnInit {
     this.router.navigate(['delaywhen']);
   }
 
+  goToThrottling() {
+    this.router.navigate(['throttling']);
+  }
+
   goToDistinctUntilChanged() {
     this.router.navigate(['distinctuntilchanged']);
   }
