@@ -31,6 +31,7 @@ import { Queque2Component } from './schedulers/queque2/queque2.component';
 import { Part1Component } from './part1/part1.component';
 import { HomeComponent } from './home/home.component';
 import { Part2Module } from './part2/part2.module';
+import { Part3Module } from './part3/part3.module';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { Part2Module } from './part2/part2.module';
   imports: [
     BrowserModule,
     Part2Module,
+    Part3Module,
     HttpClientModule,
     AppRoutingModule,
     FlexLayoutModule,

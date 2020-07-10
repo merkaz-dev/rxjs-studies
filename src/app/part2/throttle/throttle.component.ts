@@ -2,7 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Subscription, fromEvent, timer, from, interval, noop } from 'rxjs';
 import { map, throttleTime, throttle, takeUntil, tap } from 'rxjs/operators';
-import { time } from 'console';
+import {
+  debug,
+  RxJsLogginLevel,
+  setRxJsLoggingLevel,
+} from '../../../models/debug';
 
 @Component({
   selector: 'app-throttle',
@@ -21,13 +25,16 @@ export class ThrottleComponent implements OnInit {
     new Promise((resolve) =>
       setTimeout(() => resolve(`Resolved: ${val}`), val * 200)
     );
-  //when promise resolves emit item from source
+  //when promise resolves emit item from sourcerx
+
   example$ = this.source$.pipe(
     tap((v) => {
       this.interval = v;
     }),
+    debug(RxJsLogginLevel.TRACE, 'interval'),
     throttle(this.promise),
-    map((val) => `Throttled off Promise: ${val}`)
+    map((val) => `Throttled off Promise: ${val}`),
+    debug(RxJsLogginLevel.DEGUB, 'message from map')
   );
 
   @ViewChild('searchInput') input: ElementRef;
@@ -38,7 +45,9 @@ export class ThrottleComponent implements OnInit {
   );
 
   constructor(private fb: FormBuilder) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setRxJsLoggingLevel(RxJsLogginLevel.TRACE);
+  }
 
   run2() {
     this.sub = this.example$.subscribe((v) => {
@@ -63,7 +72,6 @@ export class ThrottleComponent implements OnInit {
     );
   }
   clear() {
-    this.message = '';
     this.timer = '';
     this.done = '';
   }

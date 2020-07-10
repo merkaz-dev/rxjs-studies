@@ -21,6 +21,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('../app/part2/part2.module').then((m) => m.Part2Module),
   },
+  {
+    path: 'part3',
+    loadChildren: () =>
+      import('../app/part3/part3.module').then((m) => m.Part3Module),
+  },
   { path: 'testing', component: TestingComponent },
   { path: 'schedulers', component: SchedulersComponent },
   { path: 'comparison', component: ComparisonsComponent },

@@ -17,4 +17,8 @@ export class HomeComponent implements OnInit {
     console.log('part2 clicked');
     this.router.navigate(['part2']);
   }
+  goToPart3() {
+    console.log('part3 clicked');
+    this.router.navigate(['part3']);
+  }
 }
