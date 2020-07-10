@@ -1,14 +1,16 @@
 <h3 style="text-align: center;">Throttle Exmaple 1</h3>
 <p>Hurry up! Type in some stuff! Promise will fire in 5 sec!</p>
-<p>message: {{ message }}</p>
+<p>promiseMessage:</p>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <p>interval: {{ interval }}</p>
+  <p>{{ throttled }}</p>
+</div>
 <div fxLayout="row" fxLayoutAlign="space-around">
   <div>
-    <form style="width: 200px;">
-      <mat-form-field [formGroup]="form" class="example-full-width">
-        <mat-label>Search</mat-label>
-        <input #searchInput matInput formControlName="description" />
-      </mat-form-field>
-    </form>
+    <button mat-button (click)="run2()">Run</button>
+  </div>
+  <div>
+    <button mat-button (click)="clear2()">Clear</button>
   </div>
 </div>
 <h3 style="text-align: center;">Throttle Exmaple 2</h3>
