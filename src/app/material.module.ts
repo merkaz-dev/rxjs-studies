@@ -38,6 +38,7 @@ const modules = [
   MatDividerModule,
   MatToolbarModule,
   MatCheckboxModule,
+  MatCheckboxModule,
   MatGridListModule,
   MatExpansionModule,
   MatFormFieldModule,

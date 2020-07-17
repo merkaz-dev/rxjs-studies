@@ -1,0 +1,10 @@
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div><button mat-button (click)="run()">Run</button></div>
+  <div #button>Purge the Buffer</div>
+  <div><button mat-button (click)="clear()">Clear</button></div>
+  <div><button mat-button (click)="unsub()">Unsub</button></div>
+</div>
+<div *ngIf="bufferArray" style="text-align: center;">{{ bufferArray }}</div>
+<div *ngIf="array">
+  <p *ngFor="let e of array">{{ e }}</p>
+</div>

@@ -26,3 +26,19 @@
     <button mat-button mat-button (click)="clear()">Clear</button>
   </div>
 </div>
+
+<p>throttles3: {{ throttled3 }}</p>
+<p>interval3: {{ interval3 }}</p>
+
+<p *ngIf="done" style="background-color: violet;">{{ done }}</p>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button mat-button mat-button (click)="run3()">Run3</button>
+  </div>
+  <div>
+    <button mat-button mat-button (click)="clear3()">Clear</button>
+  </div>
+  <div>
+    <button mat-button mat-button (click)="event($event)">Event</button>
+  </div>
+</div>

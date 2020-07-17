@@ -1,0 +1,12 @@
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <div mat-button #button>Click Me Fast</div>
+  </div>
+  <div>
+    <div mat-button (click)="clear()">Clear</div>
+  </div>
+</div>
+<p *ngIf="message">{{ message }}</p>
+<div *ngIf="clicksInfo">
+  <p *ngFor="let c of clicksInfo">{{ c }}</p>
+</div>

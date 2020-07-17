@@ -15,8 +15,10 @@ export class Part3Component implements OnInit {
     this.router.navigate(['connobs']);
   }
 
-  goToOwnObs() {
-    this.router.navigate(['ownobs']);
+  goToBuffer() {
+    this.router.navigate(['buffer']);
   }
-   
+  goToChecked() {
+    this.router.navigate(['checked']);
+  }
 }
