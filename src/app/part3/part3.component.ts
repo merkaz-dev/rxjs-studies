@@ -21,4 +21,8 @@ export class Part3Component implements OnInit {
   goToChecked() {
     this.router.navigate(['checked']);
   }
+
+  goToCourses() {
+    this.router.navigate(['courses']);
+  }
 }

@@ -1,6 +1,7 @@
 import { Observable } from "rxjs";
 import { map, shareReplay, tap } from "rxjs/operators";
 import { getCoursesUrl, getCourseByIdUrl, updateCourseUrl } from "./urls";
+import { Course } from "./../../models/course";
 
 function getHttpObsAllCourses() {
   return new Observable((observer) => {

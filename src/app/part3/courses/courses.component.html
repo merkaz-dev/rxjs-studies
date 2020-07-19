@@ -1,0 +1,12 @@
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <button mat-button (click)="loadCourses()">Load Courses</button>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div *ngIf="courses">
+    <ul>
+      <li *ngFor="let c of courses">{{ c.description }}</li>
+    </ul>
+  </div>
+</div>

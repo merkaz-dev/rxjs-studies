@@ -11,6 +11,8 @@ import { Buffer1Component } from './buffer1/buffer1.component';
 import { Buffer2Component } from './buffer2/buffer2.component';
 import { Buffer3Component } from './buffer3/buffer3.component';
 import { CheckedComponent } from './checked/checked.component';
+import { LoadingComponent } from './loading/loading.component';
+import { CoursesComponent } from './courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { CheckedComponent } from './checked/checked.component';
     Buffer2Component,
     Buffer3Component,
     CheckedComponent,
+    LoadingComponent,
+    CoursesComponent,
   ],
   imports: [
     FormsModule,
@@ -30,7 +34,7 @@ import { CheckedComponent } from './checked/checked.component';
     Part3RoutingModule,
     ReactiveFormsModule,
   ],
-  exports: [Part3RoutingModule, Part3Component],
+  exports: [Part3RoutingModule, Part3Component, LoadingComponent],
   providers: [],
 })
 export class Part3Module {}
