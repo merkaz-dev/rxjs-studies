@@ -13,6 +13,8 @@ import { Buffer3Component } from './buffer3/buffer3.component';
 import { CheckedComponent } from './checked/checked.component';
 import { LoadingComponent } from './loading/loading.component';
 import { CoursesComponent } from './courses/courses.component';
+import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { CoursesComponent } from './courses/courses.component';
     CheckedComponent,
     LoadingComponent,
     CoursesComponent,
+    CourseDialogComponent,
+    MessagesComponent,
   ],
   imports: [
     FormsModule,
@@ -34,7 +38,12 @@ import { CoursesComponent } from './courses/courses.component';
     Part3RoutingModule,
     ReactiveFormsModule,
   ],
-  exports: [Part3RoutingModule, Part3Component, LoadingComponent],
+  exports: [
+    Part3RoutingModule,
+    Part3Component,
+    LoadingComponent,
+    MessagesComponent,
+  ],
   providers: [],
 })
 export class Part3Module {}

@@ -35,6 +35,7 @@ const modules = [
   MatSelectModule,
   MatRippleModule,
   MatButtonModule,
+  MatDialogModule,
   MatDividerModule,
   MatToolbarModule,
   MatCheckboxModule,

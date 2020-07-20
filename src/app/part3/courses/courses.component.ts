@@ -1,10 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
 import { getHttpObsAllCourses } from '../../../assets/scripts/own-obs';
 import { getCoursesUrl } from '../../../assets/scripts/urls';
 import { Course } from 'src/models/course';
-import { map, shareReplay, finalize, delay } from 'rxjs/operators';
+import { map, shareReplay, finalize, delay, catchError } from 'rxjs/operators';
 import { LoadingService } from '../loading/loading.service';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
+import { MessagesService } from '../messages/messages.service';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -13,24 +20,60 @@ import { LoadingService } from '../loading/loading.service';
 export class CoursesComponent implements OnInit {
   courses$: Observable<any>;
   courses: any;
-  constructor(private loadingService: LoadingService) {}
+  constructor(
+    private loadingService: LoadingService,
+    private messagesService: MessagesService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {}
+  openDialog(course) {
+    console.log(course);
+    this.dialog.open(CourseDialogComponent, { data: course });
+  }
 
+  loadCoursesWithError() {
+    if (this.courses) {
+      this.courses = [];
+    }
+    const loadedCourses$ = this.loadingService
+      .showLoaderUntilCompleted(this.getCoursesWithError())
+      .pipe(
+        delay(400),
+        catchError((err) => {
+          const message = 'Could NOT load courses.';
+          this.messagesService.showErrors(message);
+          console.log(message, err);
+          return throwError(err);
+        })
+      );
+
+    loadedCourses$.subscribe((courses) => {
+      this.courses = courses;
+    });
+  }
   loadCourses() {
     if (this.courses) {
       this.courses = [];
     }
     const loadedCourses$ = this.loadingService
-      .showLoaderUntilCompleted(this.getHttpObsAllCourses())
-      .pipe(delay(400));
+      .showLoaderUntilCompleted(this.getCourses())
+      .pipe(
+        delay(400),
+        catchError((err) => {
+          const message = 'Could load courses.';
+          this.messagesService.showErrors(message);
+          console.log(message, err);
+          return throwError(err);
+        })
+      );
 
     loadedCourses$.subscribe((courses) => {
       this.courses = courses;
     });
   }
 
-  private getHttpObsAllCourses() {
+  private getCourses() {
     return new Observable<Course[]>((observer) => {
       fetch(getCoursesUrl())
         .then((response) => {
@@ -38,6 +81,25 @@ export class CoursesComponent implements OnInit {
         })
         .then((res) => {
           observer.next(res);
+          observer.complete();
+        })
+        .catch((err) => {
+          observer.error(err);
+        });
+    }).pipe(
+      map((v) => Object.values(v['payload'])),
+      shareReplay()
+    );
+  }
+
+  private getCoursesWithError() {
+    return new Observable<Course[]>((observer) => {
+      fetch(getCoursesUrl())
+        .then((response) => {
+          return response.json();
+        })
+        .then((res) => {
+          observer.error('Could NOT load courses');
           observer.complete();
         })
         .catch((err) => {
