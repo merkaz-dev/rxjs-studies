@@ -21,10 +21,15 @@ function getLessonsBySearchExpression(search) {
 function getLessonsUrl() {
   return `https://webhooks.mongodb-stitch.com/api/client/v2.0/app/rxjs-studies-backend-bhupb/service/RxJsServcies/incoming_webhook/s_05_get_lessons?secret=rxjs`;
 }
+
+function getUserByEmail(email) {
+  return `https://webhooks.mongodb-realm.com/api/client/v2.0/app/rxjs-studies-backend-bhupb/service/RxJsServcies/incoming_webhook/s_06_get_user_by_email?secret=rxjs&email=${email}`;
+}
 export {
   getUrls,
   getLessonsUrl,
   getCoursesUrl,
+  getUserByEmail,
   updateCourseUrl,
   getCourseByIdUrl,
   getLessonsBySearchExpression,

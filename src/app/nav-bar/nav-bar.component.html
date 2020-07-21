@@ -1,5 +1,30 @@
 <mat-toolbar color="accent">
   <mat-toolbar-row>
-    <span>Custom Toolbar</span>
+    <div fxLayout="row" fxLayoutAlign="space-around">
+      <div><span>Custom Toolbar</span></div>
+      <div>
+        <button
+          mat-button
+          color="warn"
+          (click)="login()"
+          *ngIf="authStore.isLoggedOut$ | async"
+        >
+          Login
+        </button>
+      </div>
+      <div>
+        <button
+          mat-button
+          color="warn"
+          (click)="logout()"
+          *ngIf="authStore.isLoggedIn$ | async"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+    <div *ngIf="authStore.isLoggedIn$ | async">
+      You are logged as {{ (authStore.user$ | async).name }}
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>

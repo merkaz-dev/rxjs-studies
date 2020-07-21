@@ -15,6 +15,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { MessagesComponent } from './messages/messages.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MessagesComponent } from './messages/messages.component';
     CoursesComponent,
     CourseDialogComponent,
     MessagesComponent,
+    LoginComponent,
   ],
   imports: [
     FormsModule,

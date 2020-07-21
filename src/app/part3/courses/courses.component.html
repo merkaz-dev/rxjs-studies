@@ -3,7 +3,11 @@
     <button mat-button (click)="loadCourses()">Load Courses</button>
   </div>
   <div>
-    <button mat-button (click)="loadCoursesWithError()">
+    <button
+      mat-button
+      (click)="loadCoursesWithError()"
+      *ngIf="authStore.isLoggedIn$ | async"
+    >
       Load Courses With Error
     </button>
   </div>

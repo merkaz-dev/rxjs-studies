@@ -12,6 +12,7 @@ import {
 } from '@angular/material/dialog';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { MessagesService } from '../messages/messages.service';
+import { AuthStore } from '../services/auth.store';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -23,7 +24,8 @@ export class CoursesComponent implements OnInit {
   constructor(
     private loadingService: LoadingService,
     private messagesService: MessagesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public authStore: AuthStore
   ) {}
 
   ngOnInit(): void {}
