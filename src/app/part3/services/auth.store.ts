@@ -15,11 +15,6 @@ const AUTH_DATA = 'auth_data';
   providedIn: 'root',
 })
 export class AuthStore {
-  user: User = {
-    email: 'Qanon@gmail.com',
-    name: 'Qanon',
-    password: '112233',
-  };
   private subject = new BehaviorSubject<User>(null);
 
   user$: Observable<User> = this.subject.asObservable();

@@ -44,6 +44,7 @@ import { Part3Module } from './part3/part3.module';
     SwitchAllComponent,
     ConcatMapComponent,
     CatchErrorComponent,
+
     ComparisonsComponent,
     MulticastingComponent,
     CombineLatestComponent,
@@ -62,6 +63,7 @@ import { Part3Module } from './part3/part3.module';
   ],
   imports: [
     BrowserModule,
+
     Part2Module,
     Part3Module,
     HttpClientModule,

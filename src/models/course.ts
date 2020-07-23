@@ -3,4 +3,5 @@ export interface Course {
   description: string;
   category: string;
   level: string;
+  imgUrl: string;
 }

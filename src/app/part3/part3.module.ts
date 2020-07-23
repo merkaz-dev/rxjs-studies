@@ -16,10 +16,15 @@ import { CoursesComponent } from './courses/courses.component';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { MessagesComponent } from './messages/messages.component';
 import { LoginComponent } from './login/login.component';
+import { SearchLessonsComponent } from './search-lessons/search-lessons.component';
+import { LessonComponent } from './lesson/lesson.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
+    LoginComponent,
     Part3Component,
+    LessonComponent,
     BufferComponent,
     Buffer1Component,
     Buffer2Component,
@@ -27,11 +32,12 @@ import { LoginComponent } from './login/login.component';
     CheckedComponent,
     LoadingComponent,
     CoursesComponent,
-    CourseDialogComponent,
     MessagesComponent,
-    LoginComponent,
+    CourseDialogComponent,
+    SearchLessonsComponent,
   ],
   imports: [
+    PipesModule,
     FormsModule,
     CommonModule,
     RouterModule,
@@ -46,6 +52,5 @@ import { LoginComponent } from './login/login.component';
     LoadingComponent,
     MessagesComponent,
   ],
-  providers: [],
 })
 export class Part3Module {}
