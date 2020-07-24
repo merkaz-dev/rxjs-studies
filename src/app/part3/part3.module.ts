@@ -14,11 +14,16 @@ import { CheckedComponent } from './checked/checked.component';
 import { LoadingComponent } from './loading/loading.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 import { MessagesComponent } from './messages/messages.component';
 import { LoginComponent } from './login/login.component';
 import { SearchLessonsComponent } from './search-lessons/search-lessons.component';
 import { LessonComponent } from './lesson/lesson.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { CourseDetailsComponent } from './course-details/course-details.component';
+import { ToArrayComponent } from './to-array/to-array.component';
+import { YtVideoComponent } from './yt-video/yt-video.component';
+import { YtLoaderComponent } from './yt-loader/yt-loader.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +40,10 @@ import { PipesModule } from '../pipes/pipes.module';
     MessagesComponent,
     CourseDialogComponent,
     SearchLessonsComponent,
+    CourseDetailsComponent,
+    ToArrayComponent,
+    YtVideoComponent,
+    YtLoaderComponent,
   ],
   imports: [
     PipesModule,
@@ -45,6 +54,7 @@ import { PipesModule } from '../pipes/pipes.module';
     AppMaterialModule,
     Part3RoutingModule,
     ReactiveFormsModule,
+    YouTubePlayerModule,
   ],
   exports: [
     Part3RoutingModule,

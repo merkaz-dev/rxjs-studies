@@ -1,0 +1,25 @@
+<ng-container *ngIf="courseData$ | async as data">
+  <div fxLayout="column" fxLayoutAlign="start center">
+    <div>
+      <button mat-raised-button class="back-btn" (click)="backToCourses()">
+        <mat-icon>arrow_back_ios</mat-icon>
+        Back
+      </button>
+    </div>
+    <h3>{{ data.course?.description }}</h3>
+    <div *ngIf="data.course">
+      <img
+        [src]="data.course?.imgUrl"
+        alt="courseImg"
+        style="width: 250px; height: auto;"
+      />
+    </div>
+    <div *ngIf="data.lessons.length > 0">
+      <mat-list>
+        <mat-list-item *ngFor="let l of data.lessons; let i = index">
+          {{ i + 1 }}. {{ l.description }} {{ l.duration }}
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+</ng-container>

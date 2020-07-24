@@ -1,0 +1,7 @@
+<div fxLayout="column" fxLayoutAlign="space-around center">
+  <p>LOADING {{ loading$ | async }}</p>
+  <div>
+    <app-yt-loader *ngIf="loading$ | async"></app-yt-loader>
+  </div>
+  <div [id]="videoUrl" style="background-color: black;"></div>
+</div>

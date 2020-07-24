@@ -16,10 +16,19 @@
   <div *ngIf="courses">
     <ul>
       <li *ngFor="let c of courses">
-        {{ c.description }}
-        <button mat-button (click)="openDialog(c)" color="warning">
-          Edit
-        </button>
+        <div fxLayout="row" fxLayoutAlign="space-around">
+          <div>{{ c.description }}</div>
+          <div>
+            <button mat-button (click)="openDialog(c)" color="primary">
+              Edit
+            </button>
+          </div>
+          <div>
+            <button mat-button (click)="seeCourseDetails(c.id)" color="warn">
+              Details
+            </button>
+          </div>
+        </div>
       </li>
     </ul>
   </div>

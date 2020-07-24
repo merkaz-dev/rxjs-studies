@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { getLessonsBySearchExpression } from '../../../assets/scripts/urls';
-import { shareReplay } from 'rxjs/operators';
+import {
+  getLessonsBySearchExpression,
+  getCourseByIdUrl,
+  getLessonsUrl,
+} from '../../../assets/scripts/urls';
+import { shareReplay, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Lesson } from 'src/models/lesson';
+import { Course } from 'src/models/course';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +16,22 @@ import { Observable } from 'rxjs';
 export class CoursesService {
   constructor(private httpClient: HttpClient) {}
 
-  searchLessons(search: string): Observable<any> {
+  searchLessons(search: string): Observable<Lesson[]> {
     return this.httpClient
-      .get(getLessonsBySearchExpression(search))
+      .get<Lesson[]>(getLessonsBySearchExpression(search))
       .pipe(shareReplay());
+  }
+
+  loadCourseById(courseId: string): Observable<Course> {
+    return this.httpClient.get<Course>(getCourseByIdUrl(courseId)).pipe(
+      map((res) => {
+        return res['payload'];
+      }),
+      shareReplay()
+    );
+  }
+
+  loadLessons(): Observable<Lesson[]> {
+    return this.httpClient.get<Lesson[]>(getLessonsUrl()).pipe(shareReplay());
   }
 }

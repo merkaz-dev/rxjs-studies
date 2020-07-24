@@ -25,7 +25,10 @@ export class Part3Component implements OnInit {
   goToCourses() {
     this.router.navigate(['courses']);
   }
-  goToSearchLessons(){
-    this.router.navigate(['searchlessons'])
+  goToSearchLessons() {
+    this.router.navigate(['searchlessons']);
+  }
+  toArray() {
+    this.router.navigate(['toarray']);
   }
 }

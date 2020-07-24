@@ -1,18 +1,15 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { getHttpObsAllCourses } from '../../../assets/scripts/own-obs';
+
 import { getCoursesUrl } from '../../../assets/scripts/urls';
 import { Course } from 'src/models/course';
 import { map, shareReplay, finalize, delay, catchError } from 'rxjs/operators';
 import { LoadingService } from '../loading/loading.service';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { MessagesService } from '../messages/messages.service';
 import { AuthStore } from '../services/auth.store';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -25,7 +22,8 @@ export class CoursesComponent implements OnInit {
     private loadingService: LoadingService,
     private messagesService: MessagesService,
     public dialog: MatDialog,
-    public authStore: AuthStore
+    public authStore: AuthStore,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -92,6 +90,10 @@ export class CoursesComponent implements OnInit {
       map((v) => Object.values(v['payload'])),
       shareReplay()
     );
+  }
+
+  seeCourseDetails(id: string) {
+    this.router.navigateByUrl('coursedetails/' + id);
   }
 
   private getCoursesWithError() {
