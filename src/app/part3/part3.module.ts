@@ -24,6 +24,8 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
 import { ToArrayComponent } from './to-array/to-array.component';
 import { YtVideoComponent } from './yt-video/yt-video.component';
 import { YtLoaderComponent } from './yt-loader/yt-loader.component';
+import { NgSubscribeComponent } from './ng-subscribe/ng-subscribe.component';
+import { NgSubscribeDirective } from 'src/ng-subscribe.directive';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { YtLoaderComponent } from './yt-loader/yt-loader.component';
     ToArrayComponent,
     YtVideoComponent,
     YtLoaderComponent,
+    NgSubscribeComponent,
+    NgSubscribeDirective,
   ],
   imports: [
     PipesModule,

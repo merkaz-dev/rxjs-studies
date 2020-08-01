@@ -43,7 +43,7 @@ export class AuthStore {
         this.subject.next(user);
         localStorage.setItem(AUTH_DATA, JSON.stringify(user));
       }),
-      shareReplay()
+      shareReplay({ refCount: true, bufferSize: 2 })
     );
   }
 

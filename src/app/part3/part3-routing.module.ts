@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { SearchLessonsComponent } from './search-lessons/search-lessons.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { ToArrayComponent } from './to-array/to-array.component';
+import { NgSubscribeComponent } from './ng-subscribe/ng-subscribe.component';
 
 const routes: Routes = [
   { path: '', component: Part3Component },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'toarray', component: ToArrayComponent },
+  { path: 'ngsubscribe', component: NgSubscribeComponent },
   { path: 'searchlessons', component: SearchLessonsComponent },
   { path: 'coursedetails/:courseId', component: CourseDetailsComponent },
 ];

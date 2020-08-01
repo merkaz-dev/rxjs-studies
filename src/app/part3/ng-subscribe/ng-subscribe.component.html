@@ -1,0 +1,16 @@
+<div style="text-align: center; margin: 10px;">
+  <h3>*ngSubscribe</h3>
+  <p>
+    Custom directive <i>*ngSubscribe</i> that works like async pipe but creates
+    an embedded view in your template so you can refer to the 'unwrapped' value
+    throughout your template.
+  </p>
+</div>
+<div *ngSubscribe="obs$ as obs">
+  <p>MESSAGE: {{ this.message }}</p>
+  <p>VALUE: {{ obs }}</p>
+  <p>
+    obs can be falsy (null, undefined, false). Nevertheless, the view is
+    rendered.
+  </p>
+</div>

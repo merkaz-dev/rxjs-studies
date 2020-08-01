@@ -31,4 +31,7 @@ export class Part3Component implements OnInit {
   toArray() {
     this.router.navigate(['toarray']);
   }
+  toNgSub() {
+    this.router.navigate(['ngsubscribe']);
+  }
 }
